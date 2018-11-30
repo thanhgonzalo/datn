@@ -6,14 +6,14 @@ body {
 
 /* menu */
 .caret-up {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 4px solid rgba(0, 0, 0, 0);
     border-right: 4px solid rgba(0, 0, 0, 0);
-    border-bottom: 4px solid;    
+    border-bottom: 4px solid;
     display: inline-block;
     margin-left: 2px;
-    vertical-align: middle;    
+    vertical-align: middle;
 }
 #main-mav-top ul li:hover a{
 	color: black;
@@ -67,20 +67,20 @@ body {
  }
  .thumbnail .hienthi{
     height: 220px;
-    transition: all ease 0.9s; 
+    transition: all ease 0.9s;
     padding: 0;
  }
  .thumbnail .hienthi img{
   display: block;
   height: 150px;
   width: 55%;
-  transition: all ease 0.9s; 
+  transition: all ease 0.9s;
   display: block;
   margin: 0 auto;
  }
 .thumbnail .tomtat {
     opacity: 0;
-    height: 300px; 
+    height: 300px;
     width: 100%;
     /* background: #003300; */
     color: black;
@@ -88,22 +88,22 @@ body {
     top: 0px;
     left: 0px;
     border-radius: 5px 5px 0 0;
-    transition: all ease 0.9s;   
+    transition: all ease 0.9s;
     transform: rotate(0deg);
     padding: 5px;
  }
  .thumbnail:hover .tomtat {
     opacity: 1;
-    transition: all ease 0.9s; 
+    transition: all ease 0.9s;
     -webket-transform: rotate3d(30deg, 50deg, 180deg, angle);
-    
+
  }
   .thumbnail .tomtat .thongtin{
     height: 280px;
   }
   .thumbnail .tomtat .price{
     height: 70px;
-    
+
  }
  .thumbnail .tomtat .price span{
   color: red;
@@ -111,7 +111,7 @@ body {
  .thumbnail:hover .hienthi {
     opacity: 0;
     transition: all ease 0.9s;
-    
+
  }
  .thumbnail .tomtat a li {
   list-style-type: disc;
@@ -126,7 +126,7 @@ body {
   list-style: none;
   display: block;
 }
- .caption li {    
+ .caption li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -145,7 +145,7 @@ body {
   padding:1px;
  }
  .bot-nav {
-  
+
   margin-bottom: 0;
  }
 .bot-nav li {
@@ -168,12 +168,12 @@ body {
 }
 .mobile .bt{
    height: 210px;
-  transition: all ease 0.9s; 
+  transition: all ease 0.9s;
   padding: 0;
 }
 .mobile .ct {
     opacity: 0;
-    height: 200px; 
+    height: 200px;
     width: 98%;
     /* background: #003300; */
     color: black;
@@ -181,7 +181,7 @@ body {
     top: 0px;
     left: 0px;
     border-radius: 5px 5px 0 0;
-    transition: all ease 0.9s;   
+    transition: all ease 0.9s;
     transform: rotate(0deg);
     padding: 10px;
 }
@@ -230,11 +230,11 @@ body {
 }
 .add{
   opacity: 0;
-  transition: all ease 0.9s;   
+  transition: all ease 0.9s;
 }
 .mobile:hover .add{
   opacity: 1;
-  transition: all ease 1.9s;    
+  transition: all ease 1.9s;
 }
 /* /======================================pc thumbnail =============== */
 .pc{
@@ -246,18 +246,18 @@ body {
     padding: 0;
 }
 .pc .intro{
-    transition: all ease 0.4s; 
+    transition: all ease 0.4s;
 }
 .pc .ct {
     opacity: 0;
-    height: 200px; 
+    height: 200px;
     width: 60%;
     color: black;
     position: absolute;
     top: 0px;
     left: 40%;
     border-radius: 5px 5px 0 0;
-    transition: all ease 0.9s;   
+    transition: all ease 0.9s;
     transform: rotate(0deg);
     padding: 10px;
 }
@@ -296,11 +296,11 @@ body {
 }
 .add{
   opacity: 0;
-  transition: all ease 0.9s;   
+  transition: all ease 0.9s;
 }
 .pc:hover .add{
   opacity: 1;
-  transition: all ease 1.9s;    
+  transition: all ease 1.9s;
 }
 /*-------------------------------------------------- gioi thieu */
 .gioithieu li{
@@ -382,7 +382,7 @@ footer{
   width: 75%;
   display: block;
   margin: 0 auto;
-  transition: all ease 0.9s; 
+  transition: all ease 0.9s;
 }
 .img-mobile:hover{
   height: 279px;
@@ -488,7 +488,7 @@ footer{
   /* border: 1px solid #3079ed; */
   border: 0px;
   color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  text-shadow: 0 1px rgba(0,0,0,0.1);
   background-color: #4d90fe;
   padding: 17px 0px;
   font-family: roboto;
@@ -512,7 +512,7 @@ footer{
   display: inline-block;
   opacity: 0.6;
   transition: opacity ease 0.5s;
-} 
+}
 
 .login-help{
   font-size: 12px;
@@ -534,3 +534,31 @@ footer{
   position: relative;
   margin: 0 auto;
 }
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}

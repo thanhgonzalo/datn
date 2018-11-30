@@ -29,6 +29,12 @@ Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesControlle
 
 Route::resource('payment', 'PayMentController');
 
+
+//---------------------------------cac cong viec shop------------------------------------------------//
+Route::get('shops/register',['as'  => 'register', 'uses' =>'ShopsController@index']);
+Route::post('shops/register',['as'  => 'register', 'uses' =>'ShopsController@register']);
+
+
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
 Route::group(['middleware' => 'admin'], function () {
       Route::group(['prefix' => 'admin'], function() {

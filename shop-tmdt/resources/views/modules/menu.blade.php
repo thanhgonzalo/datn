@@ -36,6 +36,7 @@
             </ul>
              <ul class="nav navbar-nav pull-right">
               {{-- <li><a href="{{ url('/admin/home') }}">Vào trang quản trị</a></li> --}}
+                 <li class="bg-primary"><a href="{{ url('/shops/register') }}" >Đăng ký shop</a></li>
               <li class="dropdown">
                 <a  class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-shopping-cart"><span class="badge">{!!Cart::count();!!}</span></span> Giỏ Hàng <b class="caret"></b></a>
                 <ul class="dropdown-menu" style="right:0; left: auto; min-width: 350px;">
@@ -53,7 +54,7 @@
                        <tbody>                       
                       @foreach(Cart::content() as $row)
                          <tr>
-                           <td> {!!$row->images!!} <img class="card-img img-circle" src="{!!url('uploads/products/'.$row->options->img)!!}" alt="dell"></td>
+                           <td> {!!$row->images!!} <img class="card-img img-circle" src="{!!url('public/uploads/products/'.$row->options->img)!!}" alt="dell"></td>
                            <td>{!!$row->qty!!}</td>
                            <td>{!!$row->name!!}</td>                           
                            <td>{!!$row->price!!} Vnd</td>
@@ -85,7 +86,12 @@
               </li> 
               <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
+                    <li class="dropbtn"><a href="#" data-toggle="modal" data-target="#login-modal">Đăng nhập</a></li>
+                     <div class="dropdown-content">
+                         <a href="#">Link 1</a>
+                         <a href="#">Link 2</a>
+                         <a href="#">Link 3</a>
+                     </div>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

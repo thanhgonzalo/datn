@@ -60,7 +60,7 @@
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        <strong>{{ $errors->first('password_confirmation') }}NDT</strong>
                                     </span>
                                 @endif
                             </div>

@@ -9,7 +9,7 @@
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 no-padding"> 
         <div class="fluid_container" style="height: 250px;">            
           <div class="camera_violet_skin" id="camera_wrap_1">
-            <div class="img-responsive" data-thumb="images/slides/thumbs/qc1.png" data-src="images/slides/qc1.png">
+            <div class="img-responsive" data-thumb="public/images/slides/thumbs/qc1.png" data-src="images/slides/qc1.png">
                 <div class="camera_caption fadeFromBottom">
                     Sắm Apple giá tốt, Du lịch châu âu. <em>Event mua hàng Apple Tại Thế Giới Di Động</em>
                 </div>
@@ -63,7 +63,7 @@
                           <p class="sum">{!!$row->intro!!}</p>
                         </div>
                         <div class="col-lg-3 no-padding">
-                          <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title=""><img src="{!!url('uploads/news/'.$row->images)!!}" alt="" width="80" height="80" style="padding-right:10px; padding-left: 0;"></a>
+                          <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title=""><img src="{!!url('public/uploads/news/'.$row->images)!!}" alt="" width="80" height="80" style="padding-right:10px; padding-left: 0;"></a>
                         </div>
                       </div>
                     @endforeach                   
@@ -76,7 +76,7 @@
                   <div class="col-lg-12 no-padding">
                     <hr>
                     <div class="col-lg-3">
-                      <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->slug!!}"><img src="{!!url('/uploads/news/'.$row->images)!!}" alt="" width="90%" height="99%"> </a>
+                      <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->slug!!}"><img src="{!!url('public/uploads/news/'.$row->images)!!}" alt="" width="90%" height="99%"> </a>
                     </div>
                     <div class="col-lg-9">
                       <h4><a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="">{!!$row->title!!}</a></h4>
@@ -108,7 +108,7 @@
                 @foreach($all as $row)
                   <div class="col-lg-12 no-padding">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding">
-                      <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->title!!}"><img src="{!!url('uploads/news/'.$row->images)!!}" alt="{!!$row->images!!}" width="99%" height="99%"> </a>
+                      <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->title!!}"><img src="{!!url('public/uploads/news/'.$row->images)!!}" alt="{!!$row->images!!}" width="99%" height="99%"> </a>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 no-padding">
                      <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="">{!!$row->title!!}</a>
@@ -128,11 +128,11 @@
         <h3 class="panel-title text-center">Sự kiện HOT</h3>
       </div>
       <div class="panel-body no-padding">
-        <a href="#" title=""><img src="{!!url('images/slides/thumbs/qc1.png')!!}" alt="" width="100%" height="100%"> </a> <br>
-        <a href="#" title=""><img src="{!!url('images/slides/thumbs/qc2.png')!!}" alt="" width="100%" height="100%"> </a> <br>
-        <a href="#" title=""><img src="{!!url('images/slides/thumbs/qc3.png')!!}" alt="" width="100%" height="100%"> </a>
-        <a href="#" title=""><img src="{!!url('images/slides/thumbs/qc4.png')!!}" alt="" width="100%" height="100%"> </a>
-        <a href="#" title=""><img src="{!!url('images/slides/thumbs/qc5.png')!!}" alt="" width="100%" height="100%"> </a>
+        <a href="#" title=""><img src="{!!url('public/images/slides/thumbs/qc1.png')!!}" alt="" width="100%" height="100%"> </a> <br>
+        <a href="#" title=""><img src="{!!url('public/images/slides/thumbs/qc2.png')!!}" alt="" width="100%" height="100%"> </a> <br>
+        <a href="#" title=""><img src="{!!url('public/images/slides/thumbs/qc3.png')!!}" alt="" width="100%" height="100%"> </a>
+        <a href="#" title=""><img src="{!!url('public/images/slides/thumbs/qc4.png')!!}" alt="" width="100%" height="100%"> </a>
+        <a href="#" title=""><img src="{!!url('public/images/slides/thumbs/qc5.png')!!}" alt="" width="100%" height="100%"> </a>
       </div>
     </div> <!-- /panel info 2  quản cáo 1          -->        
   

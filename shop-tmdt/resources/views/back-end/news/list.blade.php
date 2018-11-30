@@ -48,7 +48,7 @@
 								@foreach($data as $row)
 									<tr>
 										<td>{!!$row->id!!}</td>
-										<td> <img src="{!!url('uploads/news/'.$row->images)!!}" alt="" width="40" height="40"> </td>
+										<td> <img src="{!!url('public/uploads/news/'.$row->images)!!}" alt="" width="40" height="40"> </td>
 										<td>{!!$row->title!!}</td>
 										<td><small>{!!$row->intro!!}</small></td>
 										<td style="width: 90px;">

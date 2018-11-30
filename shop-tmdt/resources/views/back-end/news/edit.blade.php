@@ -65,7 +65,7 @@
 				      		<div class="form-group">				      			
 				      			<div class="row">
 									<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-										Ảnh hiện tại: <br><img src="{!!url('uploads/news/'.$data->images)!!}" alt="" height="40" width="80">
+										Ảnh hiện tại: <br><img src="{!!url('public/uploads/news/'.$data->images)!!}" alt="" height="40" width="80">
 									</div>
 					      			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">					      				
 					      				Hình ảnh mới : <input type="file" name="txtimg" accept="image" id="inputtxtimg" value="{!! old('txtimg',isset($data["images"]) ? $data["images"] : null) !!}" class="form-control" >

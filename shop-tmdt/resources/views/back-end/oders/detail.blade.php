@@ -74,7 +74,7 @@
 										@foreach($data as $row)
 											<tr>
 												<td>{!!$row->id!!}</td>
-												<td> <img src="{!!url('uploads/products/'.$row->images)!!}" alt="iphone" width="50" height="40"></td>
+												<td> <img src="{!!url('public/uploads/products/'.$row->images)!!}" alt="iphone" width="50" height="40"></td>
 												<td>{!!$row->name!!}</td>
 												<td>{!!$row->intro!!}</td>
 												<td>{!!$row->qty!!} </td>

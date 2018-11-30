@@ -25,7 +25,7 @@
                         <div class="panel panel-default text-center">        
                           <div id="links">
                             @foreach($data->detail_img as $row)
-                              <a href="{!!url('uploads/products/details/'.$row->images_url)!!}" title="{!!$data->name!!}" data-gallery>
+                              <a href="{!!url('public/uploads/products/details/'.$row->images_url)!!}" title="{!!$data->name!!}" data-gallery>
                                   <img src="{!!url('public/uploads/products/details/'.$row->images_url)!!}" alt="{!!$data->name!!}" width="30" height="40">
                               </a>
                             @endforeach                              
@@ -168,7 +168,7 @@
                       </div>
                       <div id="links">
                         @foreach($data->detail_img as $row)
-                          <a href="{!!url('uploads/products/details/'.$row->images_url)!!}" title="{!!$data->name!!}" data-gallery>
+                          <a href="{!!url('public/uploads/products/details/'.$row->images_url)!!}" title="{!!$data->name!!}" data-gallery>
                               <img src="{!!url('public/uploads/products/details/'.$row->images_url)!!}" alt="{!!$data->name!!}"  width="25%" height="120">
                           </a>
                         @endforeach                          

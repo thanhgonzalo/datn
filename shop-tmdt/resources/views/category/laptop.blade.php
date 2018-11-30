@@ -8,7 +8,7 @@
           <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 no-padding" >
             <div class="thumbnail">          
               <div class="hienthi">
-                <img class="img-responsive" src="{!!url('uploads/products/'.$row->images)!!}" alt="{!!$row->name!!}">
+                <img class="img-responsive" src="{!!url('public/uploads/products/'.$row->images)!!}" alt="{!!$row->name!!}">
                 <div class="caption">
                   <h1><small><strong class="title-pro">{!!$row->name!!}</strong></small></h1>
                   <p>    

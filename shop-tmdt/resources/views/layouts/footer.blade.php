@@ -2,8 +2,8 @@
       <div class="container">
         <hr>
         <footer>
-          © 2007 - 2016 Công Ty Cổ Phần Bán Lẻ Kỹ Thuật Số SCODEWEB / Địa chỉ: TP. BMT / GPĐKKD số: Websitr đang thử nghiệm. <br>
-          Thiết Kế Bởi : <a href="https://www.facebook.com/scodeweb" title="" target="#">Lhson</a>
+          © 2016 2018 Công Ty Cổ Phần Bán Lẻ Thiết Bị Điện Tử / Địa chỉ: TP. BMT / GPĐKKD số: Website đang thử nghiệm. <br>
+          Thiết Kế Bởi : <a href="https://www.facebook.com/ducthanh669" title="" target="#">thanhnd</a>
       </footer>
       </div>
     </div>

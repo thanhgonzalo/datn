@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{!!url('public/images/logo.png')!!}" alt="logo" width="50" height="20">
 
-    <title>Fshop : Hệ thông bán hàng trực tuyến SCODEWEB</title>
+    <title>NDT Shop</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{!!url('public/bootstrap/css/bootstrap.min.css')!!}" rel="stylesheet">
@@ -52,10 +52,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <div id="divAdLeft" style="display: none; position: absolute;  margin-top: 50px;">       
-      <a href="http://api.hostinger.vn/redir/1309904" target="_blank"><img src="http://www.hostinger.vn/banners/vn/hostinger-160x600-1.gif" alt="Hosting Miễn Phí" border="0" width="170" height="600" /></a>
+      <a href="http://api.hostinger.vn/redir/1309904" target="_blank"><img src="https://www.hostinger.vn/banners/vn/hostinger-160x600-1.gif" alt="Hosting Miễn Phí" border="0" width="170" height="600" /></a>
     </div>
     <div id="divAdRight" style="display: none; position: absolute;margin-top: 50px">      
-      <a href="http://api.hostinger.vn/redir/1309904" target="_blank"><img src="http://www.hostinger.vn/banners/vn/hostinger-160x600-2.gif" alt="Hosting Miễn Phí" border="0" width="170" height="600" /></a>
+      <a href="http://api.hostinger.vn/redir/1309904" target="_blank"><img src="https://www.hostinger.vn/banners/vn/hostinger-160x600-2.gif" alt="Hosting Miễn Phí" border="0" width="170" height="600" /></a>
     </div> 
 {{--     <script>       
         document.write("<script type='text/javascript' language='javascript'> MainContentW = 1150;LeftBannerW = 150;RightBannerW = 150;LeftAdjust = 35;RightAdjust = 0;TopAdjust = 5;ShowAdDiv();window.onresize=ShowAdDiv;;<\/script>");      
