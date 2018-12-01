@@ -44,17 +44,19 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
                         <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-money" style="width: 16px"></i></div>
                         <input type="text" name="id_bank" class="form-control" id="" placeholder="" required="required"
-                               autofocus="">
+                               autofocus="" value="{{ old('id_bank') }}">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
+            @if ($errors->has('id_bank'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
                         <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
+                            <i class="fa fa-close">{{ $errors->first('id_bank') }}</i>
                         </span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -65,17 +67,19 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
                         <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-home" style="width: 16px"></i></div>
                         <input type="text" name="address" class="form-control" id="" placeholder="" required="required"
-                               autofocus="">
+                               autofocus="" value="{{ old('address') }}">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
+            @if ($errors->has('address'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
                         <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
+                            <i class="fa fa-close">{{ $errors->first('address') }}</i>
                         </span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -86,17 +90,19 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
                         <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-phone" style="width: 16px"></i></div>
                         <input type="text" name="phone" class="form-control" id="" placeholder="0986xxxxx" required="required"
-                               autofocus="">
+                               autofocus="" value="{{ old('phone') }}">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
+            @if ($errors->has('phone'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
                         <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
+                            <i class="fa fa-close">{{ $errors->first('phone') }}</i>
                         </span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -107,17 +113,19 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
                         <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-at" style="width: 16px"></i></div>
                         <input type="text" name="email" class="form-control" id="email" placeholder="you@example.com"
-                               required="" autofocus="">
+                               required="" autofocus="" value="{{ old('email') }}">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
+            @if ($errors->has('email'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
                         <span class="text-danger align-middle">
-                            <!-- Put e-mail validation error messages here -->
+                            <i class="fa fa-close">{{ $errors->first('email') }}</i>
                         </span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -128,17 +136,19 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
                         <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-key" style="width: 16px"></i></div>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password"
-                               required="">
+                               required="" value="{{ old('password') }}">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-control-static">
+            @if ($errors->has('password'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
                         <span class="text-danger align-middle">
-                            <i class="fa fa-close"> Example Error Message</i>
+                            <i class="fa fa-close">{{ $errors->first('password') }}</i>
                         </span>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -150,11 +160,20 @@
                         <div class="input-group-addon" style="width: 34px; height: 34px">
                             <i class="fa fa-repeat" style="width: 16px"></i>
                         </div>
-                        <input type="password" name="password-confirmation" class="form-control" id="password-confirm"
+                        <input type="password" name="password_confirmation" class="form-control" id="password-confirm"
                                placeholder="Password" required="">
                     </div>
                 </div>
             </div>
+            @if ($errors->has('password_confirmation'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close">{{ $errors->first('password_confirmation') }}</i>
+                        </span>
+                    </div>
+                </div>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3"></div>

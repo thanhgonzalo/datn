@@ -7,9 +7,11 @@
  */
 
 namespace App\Http\Controllers;
+use App\Shops;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Str;
 
 class ShopsController extends Controller
 {
@@ -25,9 +27,9 @@ class ShopsController extends Controller
                 'id_bank'                    => 'required',
                 'address'                    => 'required|min:3|max:50',
                 'email'                      => 'required|email',
-                'phone'                      => 'numeric|min:10|max:10',
+                'phone'                      => 'numeric|min:10',
                 'password'                   => 'min:6',
-                'password_confirmation'      => 'required_with:password|same:password|min:6'
+                'password_confirmation'      => 'same:password|min:6'
             ],
             [
                 'shop_name.max'              => 'Nhập tên shop quá dài',
@@ -38,7 +40,32 @@ class ShopsController extends Controller
 
             ]);
 
-        $name = $request->input('shop_name');
-        var_dump($name); exit;
+        $data['shop_name'] = $request->input('shop_name');
+        $data['id_bank']   = $request->input('id_bank');
+        $data['address']   = $request->input('address');
+        $data['email']     = $request->input('email');
+        $data['phone']     = $request->input('phone');
+        $data['password']  = $request->input('password');
+        $data['name']      = $request->input('shop_name');
+        $data['token']     = Str::random(60);
+
+        Shops::create([
+            'name'           => $data['shop_name'],
+            'id_bank'        => $data['id_bank'],
+            'email'          => $data['email'],
+            'password'       => bcrypt($data['password']),
+            'phone'          => $data['phone'],
+            'remember_token' => $data['token'],
+            'address'        => $data['address'],
+            'status'         => '1',
+        ]);
+
+        // Create Session shop
+        $_SESSION["shop"] = $data['shop_name'];
+        return redirect('shops/login');
+    }
+
+    public function login() {
+        return view('back-end.shop.home');
     }
 }
