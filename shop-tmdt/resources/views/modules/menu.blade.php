@@ -97,7 +97,7 @@
                             <a href="#">Đăng nhập<b class="caret"></b></a>
                             <ul class="dropdown-menu register" role="menu">
                                 <li><a data-toggle="modal" data-target="#login-modal">Người mua</a></li>
-                                <li><a href="{{ url('#') }}">Shop</a></li>
+                                <li><a data-toggle="modal" data-target="#login-modal-seller">Shop</a></li>
                             </ul>
                         </li>
                     @else
@@ -130,7 +130,7 @@
   </div>
   <!-- /left slider bar nav -->
 
-  {{-- loginform --}}
+  {{-- loginform buyer --}}
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
       <div class="modal-dialog">
       <div class="loginmodal-container">
@@ -170,3 +170,41 @@
       </div>
     </div>
   </div>
+
+ {{-- loginform seller --}}
+ <div class="modal fade" id="login-modal-seller" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+     <div class="modal-dialog">
+         <div class="loginmodal-container">
+             <h1>Đăng nhập</h1><br>
+             <form class="form-horizontal" role="form" method="POST" id="login-form" action="{{ url('shops/login') }}">
+                 {{ csrf_field() }}
+                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                     <input id="email" type="email" class="form-control" name="email" placeholder="Nhập địa chỉ Email" value="{{ old('email') }}">
+                     @if ($errors->has('email'))
+                         <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                     @endif
+                 </div>
+                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                     <input id="password" type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
+                     @if ($errors->has('password'))
+                         <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                     @endif
+                 </div>
+                 <div class="form-group">
+                     <div>
+                         <div class="checkbox">
+                             <label>
+                                 <input type="checkbox" name="remember"> Ghi nhớ
+                             </label>
+                         </div>
+                     </div>
+                 </div>
+                 <input type="submit" name="login" class="btn btn-primary" value="Đăng nhập">
+             </form>
+         </div>
+     </div>
+ </div>
