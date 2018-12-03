@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 use App\Shops;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ShopsController extends Controller
@@ -18,6 +18,10 @@ class ShopsController extends Controller
     public function index() {
         return view('shop.resgister');
 
+    }
+
+    public function home() {
+        return view('back-end.shop.home');
     }
 
     public function register(Request $request) {
@@ -61,11 +65,24 @@ class ShopsController extends Controller
         ]);
 
         // Create Session shop
-        $_SESSION["shop"] = $data['shop_name'];
-        return redirect('shops/login');
+        $_SESSION["shop"] = $data['email'];
+        return redirect('shops/home');
     }
 
-    public function login() {
-        return view('back-end.shop.home');
+    public function login(Request $request) {
+        $email    = $request->input('email');
+        $password = $request->input('password');
+
+        if($email == null || $password == null) {
+            return redirect('/');
+        }
+
+        $shop = Shops::where('email',$email)->first();
+        if (Hash::check($password, $shop->password)) {
+            // Create Session shop
+            $_SESSION["shop"] = $email;
+            return redirect('shops/home');
+        }
+        return redirect('/');
     }
 }

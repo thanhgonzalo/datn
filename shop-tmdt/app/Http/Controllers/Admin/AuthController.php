@@ -74,10 +74,10 @@ class AuthController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
+     * @param array $data
+     * @return Admin_users
      */
+
     protected function create(array $data)
     {
         return Admin_users::create([

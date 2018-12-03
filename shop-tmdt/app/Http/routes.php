@@ -33,7 +33,8 @@ Route::resource('payment', 'PayMentController');
 //---------------------------------cac cong viec shop------------------------------------------------//
 Route::get('shops/register',['as'  => 'register', 'uses' =>'ShopsController@index']);
 Route::post('shops/register',['as'  => 'register', 'uses' =>'ShopsController@register']);
-Route::get('shops/login',['as'  => 'login', 'uses' =>'ShopsController@login']);
+Route::post('shops/login',['as'  => 'login', 'uses' =>'ShopsController@login']);
+Route::get('shops/home',['as'  => 'home', 'uses' =>'ShopsController@home']);
 
 
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
