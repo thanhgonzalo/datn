@@ -21,7 +21,13 @@ class ShopsController extends Controller
     }
 
     public function home() {
-        return view('back-end.shop.home');
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+        $email = $_SESSION["shop"];
+        $shop = Shops::where('email',$email)->first();
+
     }
 
     public function register(Request $request) {
@@ -78,8 +84,9 @@ class ShopsController extends Controller
         }
 
         $shop = Shops::where('email',$email)->first();
-        if (Hash::check($password, $shop->password)) {
+        if ($shop!== null && Hash::check($password, $shop->password)) {
             // Create Session shop
+            session_start();
             $_SESSION["shop"] = $email;
             return redirect('shops/home');
         }
