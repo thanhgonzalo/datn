@@ -38,7 +38,7 @@ class JsonRestExceptionParser extends AbstractJsonExceptionParser
             $data['type'] = strtolower($data['type']);
         }
 
-        // Retrieve the error code from services like Amazon Elastic Transcoder
+        // Retrieve the error code from services like Amazon Elastic Transcorder
         if ($code = (string) $response->getHeader('x-amzn-ErrorType')) {
             $data['code'] = substr($code, 0, strpos($code, ':'));
         }

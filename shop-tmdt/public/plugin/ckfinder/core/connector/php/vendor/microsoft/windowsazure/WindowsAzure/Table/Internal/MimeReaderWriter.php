@@ -100,8 +100,8 @@ class MimeReaderWriter implements IMimeReaderWriter
     {
         $params['include_bodies'] = true;
         $params['input']          = $mimeBody;
-        $mimeDecoder              = new \Mail_mimeDecode($mimeBody);
-        $structure                = $mimeDecoder->decode($params);
+        $mimeDecorder              = new \Mail_mimeDecode($mimeBody);
+        $structure                = $mimeDecorder->decode($params);
         $parts                    = $structure->parts;
         $bodies                   = array();
         

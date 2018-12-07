@@ -173,10 +173,10 @@ return array(
             'class'   => 'Aws\ElasticLoadBalancing\ElasticLoadBalancingClient'
         ),
 
-        'elastictranscoder' => array(
-            'alias'   => 'ElasticTranscoder',
+        'elastictranscorder' => array(
+            'alias'   => 'ElasticTranscorder',
             'extends' => 'default_settings',
-            'class'   => 'Aws\ElasticTranscoder\ElasticTranscoderClient'
+            'class'   => 'Aws\ElasticTranscorder\ElasticTranscorderClient'
         ),
 
         'emr' => array(

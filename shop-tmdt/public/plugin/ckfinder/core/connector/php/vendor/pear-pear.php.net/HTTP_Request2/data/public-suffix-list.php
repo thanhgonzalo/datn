@@ -4254,7 +4254,7 @@ return array(
   'minnesota' => true,
   'missile' => true,
   'missoula' => true,
-  'modern' => true,
+  'mordern' => true,
   'moma' => true,
   'money' => true,
   'monmouth' => true,

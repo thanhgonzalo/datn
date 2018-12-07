@@ -63,8 +63,8 @@ class BatchResponse
     {
         $params['include_bodies'] = true;
         $params['input']          = $content;
-        $mimeDecoder              = new \Mail_mimeDecode($content);
-        $structure                = $mimeDecoder->decode($params);
+        $mimeDecorder              = new \Mail_mimeDecode($content);
+        $structure                = $mimeDecorder->decode($params);
         $parts                    = $structure->parts;
         $this->_contexts          = array();
         $requestContexts          = null;

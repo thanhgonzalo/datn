@@ -21,7 +21,7 @@
         "202": "Fitxer invàlid.",
         "203": "Fitxer invàlid. El pes és massa gran.",
         "204": "El fitxer pujat està corrupte.",
-        "205": "La carpeta temporal no està disponible en el servidor per poder realitzar pujades.",
+        "205": "La carpeta temporal no està disponible en el servidor per porder realitzar pujades.",
         "206": "La pujada s'ha cancel·lat per raons de seguretat. El fitxer conté codi HTML.",
         "207": "El fitxer pujat ha estat renombrat com a \"{name}\".",
         "300": "Ha fallat el moure el(s) fitxer(s).",

@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Oders_detail extends Model
+class Orders_detail extends Model
 {
-    protected $table ='oders_detail';
+    protected $table ='orders_detail';
 	protected $guarded =[];
 
-	 public function oders()
+	 public function orders()
     {
-        return $this->belongsTo('App\Oders','o_id');
+        return $this->belongsTo('App\orders','o_id');
     }
 
     public function products()

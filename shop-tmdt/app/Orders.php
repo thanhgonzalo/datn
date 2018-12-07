@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Oders extends Model
+class Orders extends Model
 {
-    protected $table ='oders';
+    protected $table ='orders';
 	protected $guarded =[];
 
 	public function user()
     {
         return $this->belongsTo('App\User','c_id');
     }
-    public function oders_detail()
+    public function orders_detail()
 	{
-		return $this->hasMany('App\Oders_detail','o_id');
+		return $this->hasMany('App\orders_detail','o_id');
 	}
 }

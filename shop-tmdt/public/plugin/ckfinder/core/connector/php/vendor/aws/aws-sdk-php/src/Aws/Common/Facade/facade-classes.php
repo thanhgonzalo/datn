@@ -128,11 +128,11 @@ class ElasticLoadBalancing extends Facade
     }
 }
 
-class ElasticTranscoder extends Facade
+class ElasticTranscorder extends Facade
 {
     public static function getServiceBuilderKey()
     {
-        return 'elastictranscoder';
+        return 'elastictranscorder';
     }
 }
 

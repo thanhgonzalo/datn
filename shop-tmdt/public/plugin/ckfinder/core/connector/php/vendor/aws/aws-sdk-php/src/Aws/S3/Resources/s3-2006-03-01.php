@@ -2291,7 +2291,7 @@ return array (
                             'Condition' => array(
                                 'type' => 'object',
                                 'properties' => array(
-                                    'HttpErrorCodeReturnedEquals' => array(
+                                    'HttpErrorCordereturnedEquals' => array(
                                         'type' => 'string',
                                     ),
                                     'KeyPrefixEquals' => array(
@@ -3769,7 +3769,7 @@ return array (
                             'Condition' => array(
                                 'type' => 'object',
                                 'properties' => array(
-                                    'HttpErrorCodeReturnedEquals' => array(
+                                    'HttpErrorCordereturnedEquals' => array(
                                         'type' => 'string',
                                     ),
                                     'KeyPrefixEquals' => array(

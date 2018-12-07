@@ -197,10 +197,10 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2016_11_24_013636_create_detal_img_table', 1),
 ('2016_11_24_014238_create_news_table', 1),
 ('2016_11_24_014742_create_banners_table', 1),
-('2016_12_01_161126_create_oders_table', 2),
-('2016_12_02_015703_create_oders_detail_table', 3),
-('2016_12_02_023327_create_oders_table', 4),
-('2016_12_02_023343_create_oders_detail_table', 4);
+('2016_12_01_161126_create_orders_table', 2),
+('2016_12_02_015703_create_orders_detail_table', 3),
+('2016_12_02_023327_create_orders_table', 4),
+('2016_12_02_023343_create_orders_detail_table', 4);
 
 -- --------------------------------------------------------
 
@@ -248,10 +248,10 @@ INSERT INTO `news` (`id`, `title`, `slug`, `author`, `intro`, `full`, `images`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `oders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
-CREATE TABLE `oders` (
+CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
   `c_id` int(10) UNSIGNED NOT NULL,
   `qty` int(11) NOT NULL,
@@ -265,10 +265,10 @@ CREATE TABLE `oders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `oders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
-INSERT INTO `oders` (`id`, `c_id`, `qty`, `sub_total`, `total`, `status`, `type`, `note`, `created_at`, `updated_at`) VALUES
+INSERT INTO `orders` (`id`, `c_id`, `qty`, `sub_total`, `total`, `status`, `type`, `note`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 24980000, 24980000, 1, 'cod', 'ok giao hang nhanh nhat co the', '2016-12-01 19:52:14', '2016-12-05 01:53:57'),
 (2, 1, 2, 24980000, 24980000, 1, 'cod', 'sad', '2016-12-01 19:55:27', '2016-12-25 21:51:13'),
 (6, 1, 2, 24980000, 24980000, 1, 'cod', 'ok be le', '2016-12-01 20:32:39', '2016-12-05 01:54:07'),
@@ -284,10 +284,10 @@ INSERT INTO `oders` (`id`, `c_id`, `qty`, `sub_total`, `total`, `status`, `type`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `oders_detail`
+-- Cấu trúc bảng cho bảng `orders_detail`
 --
 
-CREATE TABLE `oders_detail` (
+CREATE TABLE `orders_detail` (
   `id` int(10) UNSIGNED NOT NULL,
   `pro_id` int(10) UNSIGNED NOT NULL,
   `qty` int(11) NOT NULL,
@@ -297,10 +297,10 @@ CREATE TABLE `oders_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `oders_detail`
+-- Đang đổ dữ liệu cho bảng `orders_detail`
 --
 
-INSERT INTO `oders_detail` (`id`, `pro_id`, `qty`, `o_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `orders_detail` (`id`, `pro_id`, `qty`, `o_id`, `created_at`, `updated_at`) VALUES
 (1, 26, 1, 1, '2016-12-01 19:52:14', '2016-12-01 19:52:14'),
 (2, 24, 1, 1, '2016-12-01 19:52:14', '2016-12-01 19:52:14'),
 (3, 26, 1, 2, '2016-12-01 19:55:27', '2016-12-01 19:55:27'),
@@ -548,19 +548,19 @@ ALTER TABLE `news`
   ADD KEY `news_user_id_foreign` (`user_id`);
 
 --
--- Chỉ mục cho bảng `oders`
+-- Chỉ mục cho bảng `orders`
 --
-ALTER TABLE `oders`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `oders_c_id_foreign` (`c_id`);
+  ADD KEY `orders_c_id_foreign` (`c_id`);
 
 --
--- Chỉ mục cho bảng `oders_detail`
+-- Chỉ mục cho bảng `orders_detail`
 --
-ALTER TABLE `oders_detail`
+ALTER TABLE `orders_detail`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `oders_detail_pro_id_foreign` (`pro_id`),
-  ADD KEY `oders_detail_o_id_foreign` (`o_id`);
+  ADD KEY `orders_detail_pro_id_foreign` (`pro_id`),
+  ADD KEY `orders_detail_o_id_foreign` (`o_id`);
 
 --
 -- Chỉ mục cho bảng `password_resets`
@@ -621,14 +621,14 @@ ALTER TABLE `detail_img`
 ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT cho bảng `oders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
-ALTER TABLE `oders`
+ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT cho bảng `oders_detail`
+-- AUTO_INCREMENT cho bảng `orders_detail`
 --
-ALTER TABLE `oders_detail`
+ALTER TABLE `orders_detail`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT cho bảng `products`
@@ -669,17 +669,17 @@ ALTER TABLE `news`
   ADD CONSTRAINT `news_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `oders`
+-- Các ràng buộc cho bảng `orders`
 --
-ALTER TABLE `oders`
-  ADD CONSTRAINT `oders_c_id_foreign` FOREIGN KEY (`c_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_c_id_foreign` FOREIGN KEY (`c_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `oders_detail`
+-- Các ràng buộc cho bảng `orders_detail`
 --
-ALTER TABLE `oders_detail`
-  ADD CONSTRAINT `oders_detail_o_id_foreign` FOREIGN KEY (`o_id`) REFERENCES `oders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `oders_detail_pro_id_foreign` FOREIGN KEY (`pro_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+ALTER TABLE `orders_detail`
+  ADD CONSTRAINT `orders_detail_o_id_foreign` FOREIGN KEY (`o_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_detail_pro_id_foreign` FOREIGN KEY (`pro_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `products`

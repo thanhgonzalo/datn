@@ -1,6 +1,6 @@
 @extends('layouts.new-master')
 @section('content')
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <h3 class="panel-title">
       <span class="glyphicon glyphicon-home"><a href="{!!url('/')!!}" title=""> Home</a></span> 
       <span class="glyphicon glyphicon-chevron-right" style="font-size: 11px;"></span><a href="{!!url('/pc')!!}" title=""> Máy tính bàn (PC)</a>

@@ -12,7 +12,7 @@ Route::get('admin/password/reset', ['as'  => 'getreser', 'uses' =>'Admin\AuthCon
 Route::get('admin/logout', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@logout']);
 
 Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
-// cart - oder
+// cart - order
 Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
 // them vao gio hang
 Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
@@ -21,8 +21,8 @@ Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesCon
 Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
 
 // tien hanh dat hang
-Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);
-Route::post('dat-hang', ['as'  => 'postoder', 'uses' =>'PagesController@postoder']);
+Route::get('dat-hang', ['as'  => 'getorder', 'uses' =>'PagesController@getorder']);
+Route::post('dat-hang', ['as'  => 'postorder', 'uses' =>'PagesController@postorder']);
 // category
 Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
 Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
@@ -80,11 +80,11 @@ Route::group(['middleware' => 'admin'], function () {
         // -------------------- quan ly đơn đặt hàng--------------------
         Route::group(['prefix' => '/donhang'], function() {;
 
-           Route::get('',['as'       =>'getpro','uses' => 'OdersController@getlist']);
-           Route::get('/del/{id}',['as'   =>'getdeloder','uses' => 'OdersController@getdel'])->where('id','[0-9]+');
+           Route::get('',['as'       =>'getpro','uses' => 'ordersController@getlist']);
+           Route::get('/del/{id}',['as'   =>'getdelorder','uses' => 'ordersController@getdel'])->where('id','[0-9]+');
            
-           Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'OdersController@getdetail'])->where('id','[0-9]+');
-           Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'OdersController@postdetail'])->where('id','[0-9]+');
+           Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'ordersController@getdetail'])->where('id','[0-9]+');
+           Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'ordersController@postdetail'])->where('id','[0-9]+');
       });
         // -------------------- quan ly thong tin khach hang--------------------
         Route::group(['prefix' => '/khachhang'], function() {;

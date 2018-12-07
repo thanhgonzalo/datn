@@ -35,10 +35,13 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên nhân viên</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Điện thoại</th>
                                         <th>Email</th>
-                                        <th>Quyền</th>
-                                        <th>Ngày đăng ký</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Thành tiền</th>
+                                        <th>Trạng thái</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -46,21 +49,22 @@
                                     @foreach($data as $row)
                                         <tr>
                                             <td>{!!$row->id!!}</td>
-                                            <td>{!!$row->name!!}</td>
-                                            <td>{!!$row->email!!}</td>
+                                            <td>{!!$row->user->name!!}</td>
+                                            <td>{!!$row->user->address!!}</td>
+                                            <td>{!!$row->user->phone!!}</td>
+                                            <td>{!!$row->user->email!!}</td>
+                                            <td>{!!$row->created_at!!}</td>
+                                            <td>{!!$row->total!!} Vnd</td>
                                             <td>
-                                                @if($row->level ==100)
-                                                    <span style="color:#d35400;">Quản trị hệ thống</span>
+                                                @if($row->status ==0)
+                                                    <span style="color:#d35400;">Chưa xác nhận</span>
                                                 @else
-                                                    <span style="color:#27ae60;">Quản trị viên</span>
+                                                    <span style="color:#27ae60;"> Đã xác nhận</span>
                                                 @endif
                                             </td>
-                                            <td>{!!$row->created_at!!}</td>
                                             <td>
-                                                <a href="{!!url('admin/khachhang/edit/'.$row->id)!!}" title="Chi tiết"> Cập nhật</a> &nbsp;
-                                                @if ($row->level !=100)
-                                                    <a href="{!!url('admin/khachhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')">Xóa bỏ</a>
-                                                @endif
+                                                <a href="{!!url('admin/donhang/detail/'.$row->id)!!}" title="Chi tiết">Chi tiết  </a> &nbsp;
+                                                <a href="{!!url('admin/donhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"> Hủy bỏ</a>
                                             </td>
                                         </tr>
                                     @endforeach

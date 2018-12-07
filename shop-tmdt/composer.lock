@@ -810,7 +810,7 @@
                 "phpunit/phpunit": "4.*|5.*"
             },
             "suggest": {
-                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+                "ext-libsodium": "Provides a mordern crypto API that can be used to generate random bytes."
             },
             "type": "library",
             "autoload": {
@@ -995,7 +995,7 @@
                     "homepage": "http://justinhileman.com"
                 }
             ],
-            "description": "An interactive shell for modern PHP.",
+            "description": "An interactive shell for mordern PHP.",
             "homepage": "http://psysh.org",
             "keywords": [
                 "REPL",

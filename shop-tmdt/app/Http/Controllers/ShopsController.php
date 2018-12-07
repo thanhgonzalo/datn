@@ -7,9 +7,12 @@
  */
 
 namespace App\Http\Controllers;
+use App\Orders;
+use App\Products;
 use App\Shops;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -17,7 +20,6 @@ class ShopsController extends Controller
 {
     public function index() {
         return view('shop.resgister');
-
     }
 
     public function home() {
@@ -28,6 +30,30 @@ class ShopsController extends Controller
         $email = $_SESSION["shop"];
         $shop = Shops::where('email',$email)->first();
 
+        $totalOrder = DB::table('orders')
+                        ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
+                        ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+                        ->where('products.shop_id','=',$shop->id)
+                        ->count();
+
+        $totalCustomer = DB::table('users')
+                        ->rightjoin('')
+                        ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
+                        ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+                        ->where('products.shop_id','=',$shop->id)
+                        ->count();
+        $totalNewOrder = 0;
+        $totalProduct = Products::where('shop_id',$shop->id)->count();
+        $totalCustomer = 0;
+
+        $data = array(
+            'shop_name'        => $shop->name,
+            'total_order'      => $totalOrder,
+            'total_new_order'  => $totalNewOrder,
+            'total_product'    => $totalProduct,
+            'total_customer'   => $totalCustomer
+        );
+        return view('back-end.shop.home')->with('data', $data);
     }
 
     public function register(Request $request) {

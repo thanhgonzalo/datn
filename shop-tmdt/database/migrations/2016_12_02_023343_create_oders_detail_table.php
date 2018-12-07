@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOdersDetailTable extends Migration
+class CreateordersDetailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateOdersDetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('oders_detail', function (Blueprint $table) {
+        Schema::create('orders_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pro_id')->unsigned();
             $table->foreign('pro_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('qty');
             $table->integer('o_id')->unsigned();
-            $table->foreign('o_id')->references('id')->on('oders')->onDelete('cascade');
+            $table->foreign('o_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateOdersDetailTable extends Migration
      */
     public function down()
     {
-        Schema::drop('oders_detail');
+        Schema::drop('orders_detail');
     }
 }

@@ -709,7 +709,7 @@ class Mail_mimePart
         // RFC2231:
         $encValue = preg_replace_callback(
             '/([^\x21\x23\x24\x26\x2B\x2D\x2E\x30-\x39\x41-\x5A\x5E-\x7E])/',
-            array($this, 'encodeReplaceCallback'), $value
+            array($this, 'encordereplaceCallback'), $value
         );
         $value = "$charset'$language'$encValue";
 
@@ -1229,7 +1229,7 @@ class Mail_mimePart
      *
      * @return string Encoded character string
      */
-    protected static function encodeReplaceCallback($matches)
+    protected static function encordereplaceCallback($matches)
     {
         return sprintf('%%%02X', ord($matches[1]));
     }

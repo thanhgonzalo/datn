@@ -17,7 +17,7 @@ use Monolog\Logger;
  * NativeMailerHandler uses the mail() function to send the emails
  *
  * @author Christophe Coevoet <stof@notk.org>
- * @author Mark Garrett <mark@moderndeveloperllc.com>
+ * @author Mark Garrett <mark@morderndeveloperllc.com>
  */
 class NativeMailerHandler extends MailHandler
 {

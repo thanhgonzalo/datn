@@ -6,7 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
-use App\Oders;
+use App\orders;
 use DB;
 
 class HomeController extends Controller
@@ -28,9 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $oder = DB::table('oders')->where('c_id','=',Auth::user()->id)->get();
-        // print_r($oder); exit();
-        return view('member.user',['data'=>$oder]);
+        $order = DB::table('orders')->where('c_id','=',Auth::user()->id)->get();
+        // print_r($order); exit();
+        return view('member.user',['data'=>$order]);
     }
     public function edit()
    {

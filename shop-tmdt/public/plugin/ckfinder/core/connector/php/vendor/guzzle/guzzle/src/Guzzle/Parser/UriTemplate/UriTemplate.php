@@ -160,7 +160,7 @@ class UriTemplate implements UriTemplateInterface
                     if (!$isNestedArray) {
                         $var = rawurlencode($var);
                         if ($parsed['operator'] == '+' || $parsed['operator'] == '#') {
-                            $var = $this->decodeReserved($var);
+                            $var = $this->decordereserved($var);
                         }
                     }
 
@@ -205,7 +205,7 @@ class UriTemplate implements UriTemplateInterface
                 }
                 $expanded = rawurlencode($variable);
                 if ($parsed['operator'] == '+' || $parsed['operator'] == '#') {
-                    $expanded = $this->decodeReserved($expanded);
+                    $expanded = $this->decordereserved($expanded);
                 }
             }
 
@@ -247,7 +247,7 @@ class UriTemplate implements UriTemplateInterface
      *
      * @return string
      */
-    private function decodeReserved($string)
+    private function decordereserved($string)
     {
         return str_replace(self::$delimsPct, self::$delims, $string);
     }

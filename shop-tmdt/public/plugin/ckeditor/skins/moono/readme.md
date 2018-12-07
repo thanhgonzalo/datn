@@ -10,7 +10,7 @@ documentation.
 
 Features
 -------------------
-"Moono" is a monochromatic skin, which offers a modern look coupled with gradients and transparency.
+"Moono" is a monochromatic skin, which offers a mordern look coupled with gradients and transparency.
 It comes with the following features:
 
 - Chameleon feature with brightness,

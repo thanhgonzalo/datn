@@ -25,8 +25,8 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
 use Cart,Auth,DateTime;
-use App\Oders;
-use App\Oders_detail;
+use App\orders;
+use App\orders_detail;
 class PayMentController extends Controller
 {    
     private $apiContext;
@@ -69,24 +69,24 @@ class PayMentController extends Controller
             $result = $payment->execute($execution,$this->apiContext);
             if ($result->getState() =='approved') 
             {
-                $oder = new Oders();
+                $order = new orders();
                 $total =0;
                 foreach (Cart::content() as $row) {
                     $total = $total + ( $row->qty * $row->price);
                 }
-                $oder->c_id = Auth::user()->id;
-                $oder->qty = Cart::count();
-                $oder->sub_total = floatval($total);
-                $oder->total =  floatval($total);
-                $oder->status = 1;
-                $oder->type = 'paypal';
-                $oder->note = $result->id;
-                $oder->created_at = new datetime;
-                $oder->save();
-                $o_id =$oder->id;
+                $order->c_id = Auth::user()->id;
+                $order->qty = Cart::count();
+                $order->sub_total = floatval($total);
+                $order->total =  floatval($total);
+                $order->status = 1;
+                $order->type = 'paypal';
+                $order->note = $result->id;
+                $order->created_at = new datetime;
+                $order->save();
+                $o_id =$order->id;
 
                 foreach (Cart::content() as $row) {
-                   $detail = new Oders_detail();
+                   $detail = new orders_detail();
                    $detail->pro_id = $row->id;
                    $detail->qty = $row->qty;
                    $detail->o_id = $o_id;

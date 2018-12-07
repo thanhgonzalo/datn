@@ -10,8 +10,8 @@ use App\Products;
 use App\Category;
 use App\Pro_detail;
 use App\News;
-use App\Oders;
-use App\Oders_detail;
+use App\orders;
+use App\orders_detail;
 use DB,Cart,Datetime;
 
 class PagesController extends Controller
@@ -76,36 +76,36 @@ class PagesController extends Controller
     	return view ('detail.card')
         ->with('slug','Chi tiết đơn hàng');
     }
-    public function getoder()
+    public function getorder()
     {
         if (Auth::guest()) {
             return redirect('login');
         } else {
 
-            return view ('detail.oder')
+            return view ('detail.order')
             ->with('slug','Xác nhận');
         }        
     }
-    public function postoder(Request $rq)
+    public function postorder(Request $rq)
     {
-        $oder = new Oders();
+        $order = new orders();
         $total =0;
         foreach (Cart::content() as $row) {
             $total = $total + ( $row->qty * $row->price);
         }
-        $oder->c_id = Auth::user()->id;
-        $oder->qty = Cart::count();
-        $oder->sub_total = floatval($total);
-        $oder->total =  floatval($total);
-        $oder->note = $rq->txtnote;
-        $oder->status = 0;
-        $oder->type = 'cod';
-        $oder->created_at = new datetime;
-        $oder->save();
-        $o_id =$oder->id;
+        $order->c_id = Auth::user()->id;
+        $order->qty = Cart::count();
+        $order->sub_total = floatval($total);
+        $order->total =  floatval($total);
+        $order->note = $rq->txtnote;
+        $order->status = 0;
+        $order->type = 'cod';
+        $order->created_at = new datetime;
+        $order->save();
+        $o_id =$order->id;
 
         foreach (Cart::content() as $row) {
-           $detail = new Oders_detail();
+           $detail = new orders_detail();
            $detail->pro_id = $row->id;
            $detail->qty = $row->qty;
            $detail->o_id = $o_id;

@@ -1286,7 +1286,7 @@ class Mail_mime
      *
      * @return string Encoded data
      */
-    public function encodeRecipients($recipients)
+    public function encorderecipients($recipients)
     {
         $input  = array('To' => $recipients);
         $retval = $this->encodeHeaders($input);
