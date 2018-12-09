@@ -18,10 +18,18 @@ use Illuminate\Support\Str;
 
 class ShopsController extends Controller
 {
+    /**
+     * Register shop get
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index() {
         return view('shop.resgister');
     }
 
+    /**
+     * Display begin
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function home() {
         session_start();
         if(!isset($_SESSION["shop"])) {
@@ -37,14 +45,21 @@ class ShopsController extends Controller
                         ->count();
 
         $totalCustomer = DB::table('users')
-                        ->rightjoin('')
+                        ->distinct()
+                        ->join('orders', 'orders.c_id', '=', 'users.id')
                         ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
                         ->join('products', 'products.id', '=', 'orders_detail.pro_id')
                         ->where('products.shop_id','=',$shop->id)
                         ->count();
-        $totalNewOrder = 0;
+        $currentDate = \Carbon\Carbon::now();
+        $agoDate = $currentDate->subDays($currentDate->dayOfWeek)->subWeek();
+        $totalNewOrder = \DB::table('orders')
+                        ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
+                        ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+                        ->where('products.shop_id','=',$shop->id)
+                        ->where('orders.created_at', '>', $agoDate)
+                        ->count();
         $totalProduct = Products::where('shop_id',$shop->id)->count();
-        $totalCustomer = 0;
 
         $data = array(
             'shop_name'        => $shop->name,
@@ -56,6 +71,23 @@ class ShopsController extends Controller
         return view('back-end.shop.home')->with('data', $data);
     }
 
+    /**
+     * Add product for shop
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addproduct() {
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+        return view('back-end.shop.addproduct');
+    }
+
+    /**
+     * Register shop
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function register(Request $request) {
         $this->validate($request,
             [
@@ -101,6 +133,11 @@ class ShopsController extends Controller
         return redirect('shops/home');
     }
 
+    /**
+     * Login shop (maybe after login)
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function login(Request $request) {
         $email    = $request->input('email');
         $password = $request->input('password');

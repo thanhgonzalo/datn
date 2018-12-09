@@ -38,7 +38,7 @@ class PagesController extends Controller
                 ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
                 ->paginate(4);
 
-    	return view('home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc]);
+        return view('home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc]);
     }
     public function addcart($id)
     {
@@ -84,7 +84,7 @@ class PagesController extends Controller
 
             return view ('detail.order')
             ->with('slug','Xác nhận');
-        }        
+        }
     }
     public function postorder(Request $rq)
     {
@@ -117,6 +117,12 @@ class PagesController extends Controller
         ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !']);    
         
     }
+
+    /**
+     * Get data base mobile,laptop,pc
+     * @param $cat
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getcate($cat)
     {
     	if ($cat == 'mobile') {
@@ -158,10 +164,7 @@ class PagesController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->paginate(5);
             return view('category.news',['data'=>$new,'hot1'=>$top1,'all'=>$all]);
-        } 
-        // else{
-        //     return redirect()->route('index');
-        // }
+        }
     }
     public function detail($cat,$id,$slug)
     {

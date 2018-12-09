@@ -1,7 +1,7 @@
 <?php
 
 Route::auth();
-Route::get('/user', 'HomeController@index');
+Route::get('/user', 'HomeController@index')->name('home');
 Route::get('/user/edit', 'HomeController@edit');
 
 // admin route 
@@ -35,6 +35,7 @@ Route::get('shops/register',['as'  => 'register', 'uses' =>'ShopsController@inde
 Route::post('shops/register',['as'  => 'register', 'uses' =>'ShopsController@register']);
 Route::post('shops/login',['as'  => 'login', 'uses' =>'ShopsController@login']);
 Route::get('shops/home',['as'  => 'home', 'uses' =>'ShopsController@home']);
+Route::get('shops/addproduct',['as'  => 'them-san-pham', 'uses' =>'ShopsController@addproduct']);
 
 
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'admin'], function () {
          return view('back-end.home');       	
        });
        // -------------------- quan ly danh muc----------------------
-       	Route::group(['prefix' => 'danhmuc'], function() {
+        Route::group(['prefix' => 'danhmuc'], function() {
            Route::get('add',['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);
            Route::post('add',['as'       =>'postaddcat','uses' => 'CategoryController@postadd']);
 
@@ -54,7 +55,7 @@ Route::group(['middleware' => 'admin'], function () {
            
            Route::get('edit/{id}',['as'  =>'geteditcat','uses' => 'CategoryController@getedit'])->where('id','[0-9]+');
            Route::post('edit/{id}',['as' =>'posteditcat','uses' => 'CategoryController@postedit'])->where('id','[0-9]+');
-    	});
+        });
          // -------------------- quan ly danh muc--------------------
         Route::group(['prefix' => '/sanpham'], function() {
            Route::get('/{loai}/add',['as'        =>'getaddpro','uses' => 'ProductsController@getadd']);
