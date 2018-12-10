@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Detail_img extends Model
 
 	public function products()
     {
-        return $this->belongsTo('App\Products','pro_id');
+        return $this->belongsTo('App\Http\Model\Products','pro_id');
     }
 }

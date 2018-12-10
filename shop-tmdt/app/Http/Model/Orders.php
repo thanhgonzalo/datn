@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,10 +11,10 @@ class Orders extends Model
 
 	public function user()
     {
-        return $this->belongsTo('App\User','c_id');
+        return $this->belongsTo('App\Http\Model\User','c_id');
     }
     public function orders_detail()
 	{
-		return $this->hasMany('App\orders_detail','o_id');
+		return $this->hasMany('App\Http\Model\Orders_detail','o_id');
 	}
 }

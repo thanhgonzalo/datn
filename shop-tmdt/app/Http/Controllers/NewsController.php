@@ -7,8 +7,8 @@ use App\Http\Requests\AddNewsRequest;
 use App\Http\Requests\EditNewsRequest;
 
 use App\Http\Requests;
-use App\News;
-use App\Category;
+use App\Http\Model\News;
+use App\Http\Model\Category;
 use Auth;
 use DateTime,File,Input,DB;
 

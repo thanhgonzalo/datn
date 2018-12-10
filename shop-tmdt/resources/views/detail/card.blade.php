@@ -61,9 +61,15 @@
                   @endforeach                    
                     <tr>
                       <td colspan="3"><strong>Tổng cộng :</strong> </td>
-                      <td>{!!Cart::count()!!}</td>
-                      <td colspan="2" style="color:red;">{!!Cart::subtotal()!!} Vnd</td>                      
-                    </tr>                    
+                        @if(Cart::count() !=0)
+                            <td>{!!Cart::count()!!}</td>
+                        @endif
+                        @if (Session()->has('flash_level'))
+                            <td colspan="2" style="color:red;">{!! Session::get('total_count') !!}  Vnd</td>
+                        @else
+                            <td colspan="2" style="color:red;">{!!Cart::subtotal()!!} Vnd</td>
+                        @endif
+                    </tr>
                   </tbody>
                 </table>                
               </div>

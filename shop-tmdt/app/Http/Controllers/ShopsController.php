@@ -7,9 +7,11 @@
  */
 
 namespace App\Http\Controllers;
-use App\Orders;
-use App\Products;
-use App\Shops;
+use App\Http\Model\Shops;
+use App\Http\Service\ServiceOrder;
+use App\Http\Service\ServiceShop;
+use App\Http\Model\Products;
+use App\Http\Service\ServiceUser;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -35,22 +37,16 @@ class ShopsController extends Controller
         if(!isset($_SESSION["shop"])) {
             return redirect('/');
         }
+        $serviceShop = new ServiceShop();
         $email = $_SESSION["shop"];
-        $shop = Shops::where('email',$email)->first();
+        $shop = $serviceShop->getShopByEmail($email);
 
-        $totalOrder = DB::table('orders')
-                        ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
-                        ->join('products', 'products.id', '=', 'orders_detail.pro_id')
-                        ->where('products.shop_id','=',$shop->id)
-                        ->count();
+        $serviceOrder = new ServiceOrder();
+        $totalOrder = $serviceOrder->getNumberOrderByShopId($shop->id);
 
-        $totalCustomer = DB::table('users')
-                        ->distinct()
-                        ->join('orders', 'orders.c_id', '=', 'users.id')
-                        ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
-                        ->join('products', 'products.id', '=', 'orders_detail.pro_id')
-                        ->where('products.shop_id','=',$shop->id)
-                        ->count();
+        $serviceUser = new ServiceUser();
+        $totalCustomer = $serviceUser->getNumberUserByShopId($shop->id);
+
         $currentDate = \Carbon\Carbon::now();
         $agoDate = $currentDate->subDays($currentDate->dayOfWeek)->subWeek();
         $totalNewOrder = \DB::table('orders')

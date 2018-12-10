@@ -37,6 +37,19 @@ Route::post('shops/login',['as'  => 'login', 'uses' =>'ShopsController@login']);
 Route::get('shops/home',['as'  => 'home', 'uses' =>'ShopsController@home']);
 Route::get('shops/addproduct',['as'  => 'them-san-pham', 'uses' =>'ShopsController@addproduct']);
 
+// -------------------- quan ly sản phẩm shop--------------------
+Route::group(['prefix' => 'shops'], function() {
+    Route::group(['prefix' => '/sanpham'], function() {
+        Route::get('/{loai}/add',['as'        =>'getaddpro','uses' => 'ProductsController@getadd']);
+        Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postadd']);
+
+        Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getlist']);
+        Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
+
+        Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');
+        Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postedit'])->where('id','[0-9]+');
+    });
+});
 
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
 Route::group(['middleware' => 'admin'], function () {

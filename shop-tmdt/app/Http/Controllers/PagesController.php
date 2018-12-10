@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Auth;
-use App\Products;
-use App\Category;
-use App\Pro_detail;
-use App\News;
-use App\orders;
-use App\orders_detail;
+use App\Http\Model\Products;
+use App\Http\Model\Category;
+use App\Http\Model\Pro_detail;
+use App\Http\Model\News;
+use App\Http\Model\Orders;
+use App\Http\Model\Orders_detail;
 use DB,Cart,Datetime;
+use Illuminate\Support\Facades\Session;
 
 class PagesController extends Controller
 {
@@ -72,8 +73,10 @@ class PagesController extends Controller
         return redirect()->route('index');   
     }
     public function getcart()
-    {   
-    	return view ('detail.card')
+    {
+        $total = Session::get('total_count');
+        var_dump($total);
+    return view ('detail.card')
         ->with('slug','Chi tiết đơn hàng');
     }
     public function getorder()

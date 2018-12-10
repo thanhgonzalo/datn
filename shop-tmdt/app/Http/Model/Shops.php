@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,6 +27,6 @@ class Shops extends Model
     ];
 
     public function list_product() {
-        return $this->hasMany('App\Products','shop_id');
+        return $this->hasMany('App\Http\Model\Products','shop_id');
     }
 }

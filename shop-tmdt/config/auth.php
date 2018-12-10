@@ -71,11 +71,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Http\Model\User::class,
         ],
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\admin_users::class,
+            'model' => App\Http\Model\Admin_users::class,
         ],
 
         // 'users' => [

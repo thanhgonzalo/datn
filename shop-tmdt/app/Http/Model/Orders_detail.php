@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,11 +11,11 @@ class Orders_detail extends Model
 
 	 public function orders()
     {
-        return $this->belongsTo('App\orders','o_id');
+        return $this->belongsTo('App\Http\Model\Orders','o_id');
     }
 
     public function products()
     {
-        return $this->hasOne('App\Products','pro_id');
+        return $this->hasOne('App\Http\Model\Products','pro_id');
     }
 }

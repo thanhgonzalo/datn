@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
-use App\User;
-use App\orders;
+use App\Http\Model\User;
+use App\Http\Model\Orders;
 use DB;
 
 class HomeController extends Controller

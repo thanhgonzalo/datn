@@ -25,8 +25,8 @@ use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
 use Cart,Auth,DateTime;
-use App\orders;
-use App\orders_detail;
+use App\Http\Model\Orders;
+use App\Http\Model\Orders_detail;
 class PayMentController extends Controller
 {    
     private $apiContext;
@@ -92,10 +92,10 @@ class PayMentController extends Controller
                    $detail->o_id = $o_id;
                    $detail->created_at = new datetime;
                    $detail->save();
-                } 
-            Cart::destroy();   
+                }
+            Cart::destroy();
             return redirect()->route('getcart')
-            ->with(['flash_level'=>'result_msg','flash_massage'=>'Thanh toán đơn hàng thành công !']);     
+            ->with(['flash_level'=>'result_msg','flash_massage'=>'Thanh toán đơn hàng thành công !','total_count'=>$total]);
             } else {
                 return redirect()->route('getcart')
                 ->with(['flash_level'=>'result_msg','flash_massage'=>' Thanh toán thất bại !']);  

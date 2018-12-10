@@ -1,18 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin_users extends Authenticatable
+class User extends Authenticatable
 {
-   /**
+    protected $table ='users';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','level',
+        'name', 'email', 'password','phone','address','status',
     ];
 
     /**
