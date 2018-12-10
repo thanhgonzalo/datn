@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceCategory;
+use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceShop;
-use Illuminate\Http\Request;
 use App\Http\Requests\AddProductsRequest;
 use App\Http\Requests\EditProductsRequest;
-use App\Http\Requests;
 use App\Http\Model\Products;
 use App\Http\Model\Category;
 use App\Http\Model\Pro_details;
@@ -17,18 +17,130 @@ use DateTime, File, Input, DB;
 
 class ProductsController extends Controller
 {
-    public function getListByShop($id) {
+    public function getListByShop($categoryId) {
         session_start();
         if(!isset($_SESSION["shop"])) {
             return redirect('/');
         }
 
         $serviceShop = new ServiceShop();
-        $email = $_SESSION["shop"];
-        var_dump($email); exit;
-        $shop = $serviceShop->getShopByEmail($email);
+        $email       = $_SESSION["shop"];
+        $shop        = $serviceShop->getShopByEmail($email);
+
+        $serviceProduct  = new ServiceProduct();
+        $listProduct     = $serviceProduct->getListProductByCategoryId($shop->id, $categoryId);
+
+        $serviceCategory         = new ServiceCategory();
+        $listCategoryByShopId    = $serviceCategory->getListCategoryByShopId($shop->id);
+        $listCategoryAll         = $serviceCategory->getListCategoryAll();
+
+        return view('back-end.shop.products.list', ['data' => $listProduct, 'cat' => $listCategoryAll,
+                          'loai' => $categoryId, 'catShop' => $listCategoryByShopId]);
     }
 
+    public function getAddByShop($id) {
+        $loai = Category::where('id', $id)->first();
+        $p_id = $loai->parent_id;
+        $p_name = Category::where('id', $p_id)->first();
+        $cat = Category::where('parent_id', $p_id)->get();
+        $pro = Products::all();
+        if ($p_id >= 19) {
+            return view('back-end.shop.products.pc-add', ['data' => $pro, 'cat' => $cat, 'loai' => $p_name->name]);
+        } else {
+            return view('back-end.shop.products.add', ['data' => $pro, 'cat' => $cat, 'loai' => $p_name->name]);
+        }
+    }
+
+    public function postAddByShop(AddProductsRequest $rq) {
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+
+        $serviceShop = new ServiceShop();
+        $email       = $_SESSION["shop"];
+        $shop        = $serviceShop->getShopByEmail($email);
+
+        $pro = new Products();
+
+        $pro->name = $rq->txtname;
+        $pro->slug = str_slug($rq->txtname, '-');
+        $pro->intro = $rq->txtintro;
+        $pro->promo1 = $rq->txtpromo1;
+        $pro->promo2 = $rq->txtpromo2;
+        $pro->promo3 = $rq->txtpromo3;
+        $pro->packet = $rq->txtpacket;
+        $pro->r_intro = $rq->txtre_Intro;
+        $pro->review = $rq->txtReview;
+        $pro->tag = $rq->txttag;
+        $pro->price = $rq->txtprice;
+        $pro->cat_id = $rq->sltCate;
+        $pro->shop_id = $shop->id;
+        $pro->created_at = new datetime;
+        $pro->status = '1';
+        $f = $rq->file('txtimg')->getClientOriginalName();
+        $filename = time() . '_' . $f;
+        $pro->images = $filename;
+        $rq->file('txtimg')->move('public/uploads/products/', $filename);
+        $pro->save();
+        $pro_id = $pro->id;
+        $detail = new Pro_details();
+
+        $detail->cpu = $rq->txtCpu;
+        $detail->ram = $rq->txtRam;
+        $detail->screen = $rq->txtScreen;
+        $detail->vga = $rq->txtVga;
+        $detail->storage = $rq->txtStorage;
+        $detail->exten_memmory = $rq->txtExtend;
+        $detail->cam1 = $rq->txtCam1;
+        $detail->cam2 = $rq->txtCam2;
+        $detail->sim = $rq->txtSIM;
+        $detail->connect = $rq->txtConnect;
+        $detail->pin = $rq->txtPin;
+        $detail->os = $rq->txtOs;
+        $detail->note = $rq->txtNote;
+        $detail->pro_id = $pro_id;
+
+        if ($rq->txtCam1 == '') {
+            $detail->cam1 = 'không có';
+        }
+        if ($rq->txtCam2 == '') {
+            $detail->cam2 = 'không có';
+        }
+        if ($rq->exten_memmory == '') {
+            $detail->exten_memmory = 'không có';
+        }
+        if ($rq->pin == '') {
+            $detail->pin = 'Không có';
+        }
+        if ($rq->sim == '') {
+            $detail->sim = 'Không có';
+        }
+        if ($rq->note == '') {
+            $detail->note = 'Không có';
+        }
+
+        $detail->created_at = new datetime;
+        $detail->save();
+
+        if ($rq->hasFile('txtdetail_img')) {
+            $df = $rq->file('txtdetail_img');
+            foreach ($df as $row) {
+                $img_detail = new Detail_img();
+                if (isset($row)) {
+                    $name_img = time() . '_' . $row->getClientOriginalName();
+                    $img_detail->images_url = $name_img;
+                    $img_detail->pro_id = $pro_id;
+                    $img_detail->created_at = new datetime;
+                    $row->move('public/uploads/products/details/', $name_img);
+                    $img_detail->save();
+                }
+            }
+        }
+        return redirect('shops/sanpham/all')
+            ->with(['flash_level' => 'result_msg', 'flash_massage' => ' Đã thêm thành công !']);
+
+    }
     public function getlist($id)
     {
         if ($id != 'all') {
@@ -78,7 +190,7 @@ class ProductsController extends Controller
         $f = $rq->file('txtimg')->getClientOriginalName();
         $filename = time() . '_' . $f;
         $pro->images = $filename;
-        $rq->file('txtimg')->move('uploads/products/', $filename);
+        $rq->file('txtimg')->move('public/uploads/products/', $filename);
         $pro->save();
         $pro_id = $pro->id;
 
@@ -130,7 +242,7 @@ class ProductsController extends Controller
                     $img_detail->images_url = $name_img;
                     $img_detail->pro_id = $pro_id;
                     $img_detail->created_at = new datetime;
-                    $row->move('uploads/products/details/', $name_img);
+                    $row->move('public/uploads/products/details/', $name_img);
                     $img_detail->save();
                 }
             }

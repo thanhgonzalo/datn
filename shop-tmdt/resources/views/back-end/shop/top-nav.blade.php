@@ -12,8 +12,8 @@
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
-                            @if(isset($data['shop_name']))
-                                {!!$data['shop_name']!!}
+                            @if(Session()->has('shop_name'))
+                                {!! Session::get('shop_name') !!}
                             @endif
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

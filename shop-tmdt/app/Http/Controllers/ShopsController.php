@@ -11,11 +11,11 @@ use App\Http\Model\Shops;
 use App\Http\Service\ServiceOrder;
 use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceShop;
-use App\Http\Model\Products;
 use App\Http\Service\ServiceUser;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class ShopsController extends Controller
@@ -40,6 +40,7 @@ class ShopsController extends Controller
         $serviceShop = new ServiceShop();
         $email = $_SESSION["shop"];
         $shop = $serviceShop->getShopByEmail($email);
+        Session::put('shop_name', $shop->name);
 
         $serviceOrder   = new ServiceOrder();
         $totalOrder     = $serviceOrder->getNumberOrderByShopId($shop->id);

@@ -17,4 +17,9 @@ class ServiceProduct
         $productDatabase = new ProductDatabase();
         return $productDatabase->getTotalNumberProductByShopId($shopId);
     }
+
+    public function getListProductByCategoryId($shopId, $categoryId) {
+        $productDatabase = new ProductDatabase();
+        return $productDatabase->getListProductByCategoryId($shopId, $categoryId);
+    }
 }

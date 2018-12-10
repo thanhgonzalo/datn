@@ -40,14 +40,14 @@ Route::get('shops/addproduct',['as'  => 'them-san-pham', 'uses' =>'ShopsControll
 // -------------------- quan ly sản phẩm shop--------------------
 Route::group(['prefix' => 'shops'], function() {
     Route::group(['prefix' => '/sanpham'], function() {
-        Route::get('/{loai}/add',['as'        =>'getaddpro','uses' => 'ProductsController@getadd']);
-        Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postadd']);
+        Route::get('/{loai}/add',['as'        =>'getaddpro','uses' => 'ProductsController@getAddByShop']);
+        Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postAddByShop']);
 
         Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getListByShop']);
-        Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
+        Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getDdel'])->where('id','[0-9]+');
 
-        Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');
-        Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postedit'])->where('id','[0-9]+');
+        Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getDedit'])->where('id','[0-9]+');
+        Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postDedit'])->where('id','[0-9]+');
     });
 });
 
