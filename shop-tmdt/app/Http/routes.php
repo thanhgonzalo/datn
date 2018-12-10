@@ -43,7 +43,7 @@ Route::group(['prefix' => 'shops'], function() {
         Route::get('/{loai}/add',['as'        =>'getaddpro','uses' => 'ProductsController@getadd']);
         Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postadd']);
 
-        Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getlist']);
+        Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getListByShop']);
         Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
 
         Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');

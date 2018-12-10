@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceShop;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddProductsRequest;
 use App\Http\Requests\EditProductsRequest;
@@ -16,6 +17,18 @@ use DateTime, File, Input, DB;
 
 class ProductsController extends Controller
 {
+    public function getListByShop($id) {
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+
+        $serviceShop = new ServiceShop();
+        $email = $_SESSION["shop"];
+        var_dump($email); exit;
+        $shop = $serviceShop->getShopByEmail($email);
+    }
+
     public function getlist($id)
     {
         if ($id != 'all') {

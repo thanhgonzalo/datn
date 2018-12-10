@@ -17,4 +17,11 @@ class ServiceOrder
         $orderDataBase = new OrderDatabase();
         return $orderDataBase->getNumberOrderByShopId($shopId);
     }
+
+    public function getNumberOrderNewByShopId($shopId) {
+        $orderDatabase = new OrderDatabase();
+        $currentDate = \Carbon\Carbon::now();
+        $agoDate = $currentDate->subDays($currentDate->dayOfWeek)->subWeek();
+        return $orderDatabase->getNumberOrderNewByShopId($shopId, $agoDate);
+    }
 }

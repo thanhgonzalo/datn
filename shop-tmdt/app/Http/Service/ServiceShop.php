@@ -17,4 +17,9 @@ class ServiceShop
         $shopDatabase = new ShopDatabase();
         return $shopDatabase->getShopByEmail($email);
     }
+
+    public function createShop($data) {
+        $shopDatabase = new ShopDatabase();
+        $shopDatabase->createShop($data);
+    }
 }

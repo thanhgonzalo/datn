@@ -16,4 +16,17 @@ class ShopDatabase
         $shop = Shops::where('email',$email)->first();
         return $shop;
     }
+
+    public function createShop($data) {
+        Shops::create([
+            'name'           => $data['shop_name'],
+            'id_bank'        => $data['id_bank'],
+            'email'          => $data['email'],
+            'password'       => bcrypt($data['password']),
+            'phone'          => $data['phone'],
+            'remember_token' => $data['token'],
+            'address'        => $data['address'],
+            'status'         => '1',
+        ]);
+    }
 }

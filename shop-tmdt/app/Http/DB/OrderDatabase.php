@@ -21,4 +21,14 @@ class OrderDatabase
             ->count();
         return $totalOrder;
     }
+
+    public function getNumberOrderNewByShopId($shopId, $agoDate) {
+        $totalNewOrder = \DB::table('orders')
+            ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
+            ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+            ->where('products.shop_id','=', $shopId)
+            ->where('orders.created_at', '>', $agoDate)
+            ->count();
+        return $totalNewOrder;
+    }
 }
