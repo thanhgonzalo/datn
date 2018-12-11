@@ -74,8 +74,6 @@ class PagesController extends Controller
     }
     public function getcart()
     {
-        $total = Session::get('total_count');
-        var_dump($total);
     return view ('detail.card')
         ->with('slug','Chi tiết đơn hàng');
     }
@@ -117,7 +115,7 @@ class PagesController extends Controller
         }
         Cart::destroy();   
         return redirect()->route('getcart')
-        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !']);    
+        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !', 'total_count'=>$total]);
         
     }
 

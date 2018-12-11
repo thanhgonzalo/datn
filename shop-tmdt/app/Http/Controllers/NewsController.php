@@ -43,7 +43,7 @@ class NewsController extends Controller
     	$f = $rq->file('txtimg')->getClientOriginalName();
     	$filename = time().'_'.$f;
     	$n->images = $filename;    	
-    	$rq->file('txtimg')->move('uploads/news/',$filename);
+    	$rq->file('txtimg')->move('public/uploads/news/',$filename);
 
     	$n->save();
     	return redirect('admin/news')
@@ -69,7 +69,7 @@ class NewsController extends Controller
     	$n->user_id = Auth::guard('admin')->user()->id;
     	$n->created_at = new datetime;
 
-    	$file_path = public_path('uploads/news/').$n->images;
+    	$file_path = public_path('public/uploads/news/').$n->images;
     	 if ($rq->hasFile('txtimg')) {
             if (file_exists($file_path))
                 {
@@ -79,7 +79,7 @@ class NewsController extends Controller
             $f = $rq->file('txtimg')->getClientOriginalName();
             $filename = time().'_'.$f;
             $n->images = $filename;       
-            $rq->file('txtimg')->move('uploads/news/',$filename);
+            $rq->file('txtimg')->move('public/uploads/news/',$filename);
         }
 
     	$n->save();

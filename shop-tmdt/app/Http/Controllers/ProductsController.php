@@ -378,7 +378,7 @@ class ProductsController extends Controller
         $detail = Detail_img::where('pro_id', $id)->get();
         foreach ($detail as $row) {
             $dt = Detail_img::find($row->id);
-            $pt = public_path('uploads/products/details/') . $dt->images_url;
+            $pt = public_path('public/uploads/products/details/') . $dt->images_url;
             // dd($pt);
             if (file_exists($pt)) {
                 unlink($pt);
@@ -432,7 +432,7 @@ class ProductsController extends Controller
         $pro->user_id = Auth::guard('admin')->user()->id;
         $pro->updated_at = new datetime;
         $pro->status = '1';
-        $file_path = public_path('uploads/products/') . $pro->images;
+        $file_path = public_path('public/uploads/products/') . $pro->images;
         if ($rq->hasFile('txtimg')) {
             if (file_exists($file_path)) {
                 unlink($file_path);
@@ -441,7 +441,7 @@ class ProductsController extends Controller
             $f = $rq->file('txtimg')->getClientOriginalName();
             $filename = time() . '_' . $f;
             $pro->images = $filename;
-            $rq->file('txtimg')->move('uploads/products/', $filename);
+            $rq->file('txtimg')->move('public/uploads/products/', $filename);
         }
         $pro->save();
 
@@ -474,7 +474,7 @@ class ProductsController extends Controller
             $df = $rq->file('txtdetail_img');
             foreach ($detail as $row) {
                 $dt = Detail_img::find($row->id);
-                $pt = public_path('uploads/products/details/') . $dt->images_url;
+                $pt = public_path('public/uploads/products/details/') . $dt->images_url;
                 // dd($pt);
                 if (file_exists($pt)) {
                     unlink($pt);
@@ -488,7 +488,7 @@ class ProductsController extends Controller
                     $img_detail->images_url = $name_img;
                     $img_detail->pro_id = $id;
                     $img_detail->created_at = new datetime;
-                    $row->move('uploads/products/details/', $name_img);
+                    $row->move('public/uploads/products/details/', $name_img);
                     $img_detail->save();
                 }
             }

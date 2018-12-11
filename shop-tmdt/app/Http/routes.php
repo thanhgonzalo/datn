@@ -49,6 +49,14 @@ Route::group(['prefix' => 'shops'], function() {
         Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getEditByShop'])->where('id','[0-9]+');
         Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postEditByShop'])->where('id','[0-9]+');
     });
+    // -------------------- quan ly đơn đặt hàng--------------------
+    Route::group(['prefix' => '/donhang'], function() {;
+        Route::get('',['as'       =>'getpro','uses' => 'ordersController@getListByShop']);
+        Route::get('/del/{id}',['as'   =>'getdelorder','uses' => 'ordersController@getDeleteDetail'])->where('id','[0-9]+');
+
+        Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'ordersController@getDetailByShop'])->where('id','[0-9]+');
+        Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'ordersController@postDetailByShop'])->where('id','[0-9]+');
+    });
 });
 
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
@@ -96,7 +104,7 @@ Route::group(['middleware' => 'admin'], function () {
 
            Route::get('',['as'       =>'getpro','uses' => 'ordersController@getlist']);
            Route::get('/del/{id}',['as'   =>'getdelorder','uses' => 'ordersController@getdel'])->where('id','[0-9]+');
-           
+
            Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'ordersController@getdetail'])->where('id','[0-9]+');
            Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'ordersController@postdetail'])->where('id','[0-9]+');
       });
