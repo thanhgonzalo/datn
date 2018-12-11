@@ -44,10 +44,10 @@ Route::group(['prefix' => 'shops'], function() {
         Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postAddByShop']);
 
         Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getListByShop']);
-        Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getDdel'])->where('id','[0-9]+');
+        Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getDeleteProduct'])->where('id','[0-9]+');
 
-        Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getDedit'])->where('id','[0-9]+');
-        Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postDedit'])->where('id','[0-9]+');
+        Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getEditByShop'])->where('id','[0-9]+');
+        Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postEditByShop'])->where('id','[0-9]+');
     });
 });
 

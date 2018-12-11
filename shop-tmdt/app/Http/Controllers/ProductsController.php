@@ -38,6 +38,110 @@ class ProductsController extends Controller
                           'loai' => $categoryId, 'catShop' => $listCategoryByShopId]);
     }
 
+    public function getEditByShop($tenLoai, $id) {
+        $dt = Products::where('id', $id)->first();
+        $c_id = $dt->cat_id;
+        $loai = Category::where('id', $c_id)->first();
+        $p_id = $loai->parent_id;
+
+        if ($p_id == 1) {
+            $cat = Category::where('parent_id', '1')->get();
+            $pro = Products::where('id', $id)->first();
+            return view('back-end.shop.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => 'Điện thoại']);
+        } elseif ($p_id == 2) {
+            $cat = Category::where('parent_id', 2)->get();
+            $pro = Products::where('id', $id)->first();
+            return view('back-end.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => 'Laptop']);
+        } elseif ($p_id == 19) {
+            $cat = Category::where('parent_id', 19)->get();
+            $pro = Products::where('id', $id)->first();
+            return view('back-end.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => $p_id]);
+        }
+    }
+
+    public function postEditByShop($loai, $id, EditProductsRequest $rq) {
+        $pro = Products::find($id);
+
+        $pro->name = $rq->txtname;
+        $pro->slug = str_slug($rq->txtname, '-');
+        $pro->intro = $rq->txtintro;
+        $pro->promo1 = $rq->txtpromo1;
+        $pro->promo2 = $rq->txtpromo2;
+        $pro->promo3 = $rq->txtpromo3;
+        $pro->packet = $rq->txtpacket;
+        $pro->r_intro = $rq->txtre_Intro;
+        $pro->review = $rq->txtReview;
+        $pro->tag = $rq->txttag;
+        $pro->price = $rq->txtprice;
+        $pro->cat_id = $rq->sltCate;
+        $pro->updated_at = new datetime;
+        $pro->status = '1';
+        $file_path = public_path('public/uploads/products/') . $pro->images;
+        if ($rq->hasFile('txtimg')) {
+            if (file_exists($file_path)) {
+                unlink($file_path);
+            }
+
+            $f = $rq->file('txtimg')->getClientOriginalName();
+            $filename = time() . '_' . $f;
+            $pro->images = $filename;
+            $rq->file('txtimg')->move('public/uploads/products/', $filename);
+        }
+        $pro->save();
+
+        $pro->pro_details->cpu = $rq->txtCpu;
+        $pro->pro_details->ram = $rq->txtRam;
+        $pro->pro_details->screen = $rq->txtScreen;
+        $pro->pro_details->vga = $rq->txtVga;
+        $pro->pro_details->storage = $rq->txtStorage;
+        $pro->pro_details->exten_memmory = $rq->txtExtend;
+        $pro->pro_details->connect = $rq->txtConnect;
+        $pro->pro_details->cam1 = $rq->txtCam1;
+        $pro->pro_details->cam2 = $rq->txtCam2;
+
+        if ($rq->txtSIM == '') {
+            $pro->pro_details->sim = 'Không có';
+        } else {
+            $pro->pro_details->sim = $rq->txtSIM;
+        }
+
+        if ($rq->txtPin == '') {
+            $pro->pro_details->pin = 'Không có';
+        } else {
+            $pro->pro_details->pin = $rq->txtPin;
+        }
+        $pro->pro_details->os = $rq->txtOs;
+        $pro->pro_details->updated_at = new datetime;
+
+        if ($rq->hasFile('txtdetail_img')) {
+            $detail = Detail_img::where('pro_id', $id)->get();
+            $df = $rq->file('txtdetail_img');
+            foreach ($detail as $row) {
+                $dt = Detail_img::find($row->id);
+                $pt = public_path('public/uploads/products/details/') . $dt->images_url;
+                // dd($pt);
+                if (file_exists($pt)) {
+                    unlink($pt);
+                }
+                $dt->delete();
+            }
+            foreach ($df as $row) {
+                $img_detail = new Detail_img();
+                if (isset($row)) {
+                    $name_img = time() . '_' . $row->getClientOriginalName();
+                    $img_detail->images_url = $name_img;
+                    $img_detail->pro_id = $id;
+                    $img_detail->created_at = new datetime;
+                    $row->move('public/uploads/products/details/', $name_img);
+                    $img_detail->save();
+                }
+            }
+        }
+        $pro->pro_details->save();
+        return redirect('shops/sanpham/all')
+            ->with(['flash_level' => 'result_msg', 'flash_massage' => ' Đã lưu !']);
+
+    }
     public function getAddByShop($id) {
         $loai = Category::where('id', $id)->first();
         $p_id = $loai->parent_id;
@@ -140,6 +244,23 @@ class ProductsController extends Controller
         return redirect('shops/sanpham/all')
             ->with(['flash_level' => 'result_msg', 'flash_massage' => ' Đã thêm thành công !']);
 
+    }
+
+    public function getDeleteProduct($id) {
+        $detail = Detail_img::where('pro_id', $id)->get();
+        foreach ($detail as $row) {
+            $dt = Detail_img::find($row->id);
+            $pt = public_path('public/uploads/products/details/') . $dt->images_url;
+            // dd($pt);
+            if (file_exists($pt)) {
+                unlink($pt);
+            }
+            $dt->delete();
+        }
+        $pro = Products::find($id);
+        $pro->delete();
+        return redirect('shops/sanpham/all')
+            ->with(['flash_level' => 'result_msg', 'flash_massage' => 'Đã xóa !']);
     }
     public function getlist($id)
     {
