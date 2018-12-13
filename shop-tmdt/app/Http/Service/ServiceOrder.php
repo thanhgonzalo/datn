@@ -10,6 +10,7 @@ namespace App\Http\Service;
 
 
 use App\Http\DB\OrderDatabase;
+use Illuminate\Support\Facades\DB;
 
 class ServiceOrder
 {
@@ -23,5 +24,10 @@ class ServiceOrder
         $currentDate = \Carbon\Carbon::now();
         $agoDate = $currentDate->subDays($currentDate->dayOfWeek)->subWeek();
         return $orderDatabase->getNumberOrderNewByShopId($shopId, $agoDate);
+    }
+
+    public function getListOrderByShopId($shopId) {
+        $orderDataBase = new OrderDatabase();
+        return $orderDataBase->getListOrderByShopId($shopId);
     }
 }

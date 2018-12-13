@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceOrder;
+use App\Http\Service\ServiceShop;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,6 +13,21 @@ use DB;
 
 class ordersController extends Controller
 {
+    public function getListByShop() {
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+
+        $serviceShop = new ServiceShop();
+        $email       = $_SESSION["shop"];
+        $shop        = $serviceShop->getShopByEmail($email);
+
+        $serviceOrder = new ServiceOrder();
+        $listOrderShop = $serviceOrder->getListOrderByShopId($shop->id);
+        return view('back-end.shop.orders.list',['data'=>$listOrderShop]);
+    }
+
     public function getlist()
     {
     	$data = orders::paginate(10);
