@@ -14,7 +14,7 @@
             <li><a href="{!!url('shops/donhang')!!}"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg> Đơn đặt hàng</a></li>
 
             <li><a href="{!!url('shops/khachhang')!!}"><svg class="glyph stroked app-window"><use xlink:href="#stroked-line-graph"></use></svg>  Khách hàng</a></li>
-1
+
             <li role="presentation" class="divider"></li>
             <li><a href="{!!url('shops/khohang')!!}"><svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad"/></svg>  Thông tin kho hàng</a></li>
 

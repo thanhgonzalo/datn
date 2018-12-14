@@ -28,6 +28,24 @@ class ordersController extends Controller
         return view('back-end.shop.orders.list',['data'=>$listOrderShop]);
     }
 
+    public function getDetailByShop($id) {
+        $order = orders::where('id',$id)->first();
+        $data = DB::table('orders_detail')
+            ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+            ->groupBy('orders_detail.id')
+            ->where('o_id',$id)
+            ->get();
+        return view('back-end.shop.orders.detail',['data'=>$data,'order'=>$order]);
+    }
+
+    public function postDetailByShop($id) {
+        $order = orders::find($id);
+        $order->status = 1;
+        $order->save();
+        return redirect('shops/donhang')
+            ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã xác nhận đơn hàng thành công !']);
+    }
+
     public function getlist()
     {
     	$data = orders::paginate(10);

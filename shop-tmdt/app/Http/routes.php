@@ -62,8 +62,8 @@ Route::group(['prefix' => 'shops'], function() {
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
 Route::group(['middleware' => 'admin'], function () {
       Route::group(['prefix' => 'admin'], function() {
-        
-       	Route::get('/home', function() {         
+
+          Route::get('/home', function() {
          return view('back-end.home');       	
        });
        // -------------------- quan ly danh muc----------------------
