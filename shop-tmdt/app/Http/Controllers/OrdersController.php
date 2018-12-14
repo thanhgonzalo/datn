@@ -38,6 +38,19 @@ class ordersController extends Controller
         return view('back-end.shop.orders.detail',['data'=>$data,'order'=>$order]);
     }
 
+    public function getDeleteDetail($id) {
+        $order = orders::where('id',$id)->first();
+        if ($order->status ==1) {
+            return redirect()->back()
+                ->with(['flash_level'=>'result_msg','flash_massage'=>'Không thể hủy đơn hàng số: '.$id.' vì đã được xác nhận!']);
+        } else {
+            $order = orders::find($id);
+            $order->delete();
+            return redirect('shops/donhang')
+                ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ đơn hàng số:  '.$id.' !']);
+        }
+    }
+
     public function postDetailByShop($id) {
         $order = orders::find($id);
         $order->status = 1;

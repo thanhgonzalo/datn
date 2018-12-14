@@ -7,7 +7,6 @@
         </form>
         <ul class="nav menu">
             <li class="active"><a href="{!!url('shops/home/')!!}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Trang chủ</a></li>
-            <li id="danhmuc"><a href="{!!url('shops/danhmuc')!!}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg> Danh mục</a></li>
 
             <li id="sanpham"><a href="{!!url('shops/sanpham/all')!!}"><svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg> Sản phẩm </a></li>
 

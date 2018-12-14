@@ -57,6 +57,15 @@ Route::group(['prefix' => 'shops'], function() {
         Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'ordersController@getDetailByShop'])->where('id','[0-9]+');
         Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'ordersController@postDetailByShop'])->where('id','[0-9]+');
     });
+
+    // -------------------- quan ly thong tin khach hang--------------------
+    Route::group(['prefix' => '/khachhang'], function() {;
+
+        Route::get('',['as'       =>'getmem','uses' => 'UsersController@getCustomerByShop']);
+
+        Route::get('/edit/{id}',['as'  =>'geteditmem','uses' => 'UsersController@getEditCustomerByShop'])->where('id','[0-9]+');
+        Route::post('/edit/{id}',['as' =>'posteditmem','uses' => 'UsersController@postEditCustomerByShop'])->where('id','[0-9]+');
+    });
 });
 
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 

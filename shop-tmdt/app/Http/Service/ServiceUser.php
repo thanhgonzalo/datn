@@ -17,4 +17,9 @@ class ServiceUser
         $userDatabase = new UserDatabase();
         return $userDatabase->getNumberUserByShopId($shopId);
     }
+
+    public function getListUserByShopId($shopId) {
+        $userDatabase = new UserDatabase();
+        return $userDatabase->getListUserByShopId($shopId);
+    }
 }
