@@ -180,6 +180,7 @@ class ProductsController extends Controller
         $pro->price = $rq->txtprice;
         $pro->cat_id = $rq->sltCate;
         $pro->shop_id = $shop->id;
+        $pro->qty = $rq->txtQty;
         $pro->created_at = new datetime;
         $pro->status = '1';
         $f = $rq->file('txtimg')->getClientOriginalName();

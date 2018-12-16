@@ -70,6 +70,13 @@
                                       </div>
                                   </div>
                               </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
+                                        <label>Số lượng : </label><input type="number" min="1" max="10" name="txtQty" id="inputtxtQty" value="{{ old('txtQty') || 1 }}" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
                               <div class="form-group">
                                   <div class="row">
                                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">

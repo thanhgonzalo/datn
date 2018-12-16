@@ -127,6 +127,11 @@
                                           Hệ điều hành : <input type="text" name="txtOs" id="inputtxtOs" value="{{ old('txtOs') }}" class="form-control" >
                                       </div>
                                   </div>
+                                  <div class="row">
+                                      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-2">
+                                          Số lượng : <input type="number" min="1" max="10" name="txtQty" id="inputtxtQty" value="{{ old('txtQty') || 1 }}" class="form-control" >
+                                      </div>
+                                  </div>
                               </div>
                               <div class="form-group">
                                   <label for="input-id">Đánh giá chi tiết sản phẩm</label>
