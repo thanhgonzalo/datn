@@ -1,0 +1,6 @@
+﻿Các công việc cần làm trong ngày mai:
+
+1. Thêm số lượng hàng ở mục sản phẩm.
+2. Khi cancel hàng --> ghi ra list mặt hàng đã cancel => chuyển trạng thái sang 3.
+3. Khi chuyển trạng thái 3 thì có time update --> thêm chức năng export file csv (cho admin).
+4. Xóa hạng mục xóa từng sản hẩm ở đơn đặt hàng(shop)
