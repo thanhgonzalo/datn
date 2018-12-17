@@ -10,6 +10,7 @@ namespace App\Http\DB;
 
 
 use App\Http\Model\Products;
+use Illuminate\Support\Facades\DB;
 
 class ProductDatabase
 {
@@ -29,5 +30,21 @@ class ProductDatabase
         }
 
         return $listProduct;
+    }
+
+    public function updateQty($shopId, $qtyDown) {
+        $product = DB::table('products')
+            ->where('id', $shopId)
+            ->decrement('qty', $qtyDown);
+        return $product;
+    }
+
+    public function checkNumberProducts($shopId, $qtyOrder) {
+        $qtyDB = Products::where('id', $shopId)->firstOrFail();
+
+        if($qtyOrder > $qtyDB->qty) {
+            return $qtyDB->qty;
+        }
+        return true;
     }
 }

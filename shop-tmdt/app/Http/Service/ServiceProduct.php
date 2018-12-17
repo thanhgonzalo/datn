@@ -22,4 +22,14 @@ class ServiceProduct
         $productDatabase = new ProductDatabase();
         return $productDatabase->getListProductByCategoryId($shopId, $categoryId);
     }
+
+    public function updateQty($shopId, $qtyDown) {
+        $productDatabase = new ProductDatabase();
+        $productDatabase->updateQty($shopId, $qtyDown);
+    }
+
+    public function checkNumberProducts($shopId, $qtyOrder) {
+        $productDatabase = new ProductDatabase();
+        return $productDatabase->checkNumberProducts($shopId, $qtyOrder);
+    }
 }

@@ -24,6 +24,12 @@
                       {!! Session::get('flash_massage') !!} 
                   </ul>
               </div>
+            @elseif (Session()->has('flash_error'))
+              <div class="alert alert-danger">
+                <ul>
+                  {!! Session::get('err_massage') !!}
+                </ul>
+              </div>
           @endif
             <div class="panel-body">
               <div class="table-responsive">

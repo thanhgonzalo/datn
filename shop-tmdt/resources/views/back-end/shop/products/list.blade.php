@@ -66,6 +66,7 @@
                                     <th>Tóm tắt chức năng</th>
                                     <th>Thương hiệu</th>
                                     <th>Giá bán</th>
+                                    <th>Số lượng</th>
                                     <th>Trạng thái</th>
                                     <th>Action</th>
                                 </tr>
@@ -79,6 +80,7 @@
                                         <td>{!!$row->intro!!}</td>
                                         <td>{!!$row->category->name!!}</td>
                                         <td>{!!$row->price!!} đ</td>
+                                        <td>{!!$row->qty!!}</td>
                                         <td>
                                             @if($row->status ==1)
                                                 <span style="color:blue;">Còn hàng</span>

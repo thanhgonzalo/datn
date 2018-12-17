@@ -51,11 +51,11 @@ class ProductsController extends Controller
         } elseif ($p_id == 2) {
             $cat = Category::where('parent_id', 2)->get();
             $pro = Products::where('id', $id)->first();
-            return view('back-end.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => 'Laptop']);
+            return view('back-end.shop.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => 'Laptop']);
         } elseif ($p_id == 19) {
             $cat = Category::where('parent_id', 19)->get();
             $pro = Products::where('id', $id)->first();
-            return view('back-end.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => $p_id]);
+            return view('back-end.shop.products.edit-mobile', ['pro' => $pro, 'cat' => $cat, 'loai' => $p_id]);
         }
     }
 

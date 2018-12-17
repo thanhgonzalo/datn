@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceProduct;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -90,10 +91,33 @@ class PagesController extends Controller
     public function postorder(Request $rq)
     {
         $order = new orders();
+        $serviceProduct = new ServiceProduct();
+
         $total =0;
+        $strShopIdFail = "";
         foreach (Cart::content() as $row) {
             $total = $total + ( $row->qty * $row->price);
+            // Check number products in shop
+            $checkNumberProducts = $serviceProduct->checkNumberProducts($row->id, $row->qty);
+            $arrayShopIdFail =  array();
+            $arrayQty = array();
+            if(is_numeric($checkNumberProducts)) {
+                $arrayShopIdFail[] = $row->id;
+                $arrayQty[] = $checkNumberProducts;
+            }
+            if($arrayShopIdFail != null) {
+                foreach ($arrayShopIdFail as $key => $value) {
+                    $strShopIdFail .= "\t" .'. Sản phẩm số '. $arrayShopIdFail[$key] . ' còn ' . $arrayQty[$key] .' chiếc'."\n";
+                }
+            }
         }
+        if($strShopIdFail != "") {
+            return redirect()->route('getcart')
+                ->with(['flash_error'=>'result_msg',
+                    'err_massage'=>' Sản phẩm bạn chọn quá nhiều so với kho hàng '.$strShopIdFail, 'total_count'=>$total]);
+        }
+        exit;
+        // Insert into order
         $order->c_id = Auth::user()->id;
         $order->qty = Cart::count();
         $order->sub_total = floatval($total);
@@ -106,17 +130,20 @@ class PagesController extends Controller
         $o_id =$order->id;
 
         foreach (Cart::content() as $row) {
-           $detail = new orders_detail();
-           $detail->pro_id = $row->id;
-           $detail->qty = $row->qty;
-           $detail->o_id = $o_id;
-           $detail->created_at = new datetime;
-           $detail->save();
+            // Insert into order detail
+            $detail = new orders_detail();
+            $detail->pro_id = $row->id;
+            $detail->qty = $row->qty;
+            $detail->o_id = $o_id;
+            $detail->created_at = new datetime;
+            $detail->save();
+
+            // Update qty products in table
+            $serviceProduct->updateQty($row->id, $row->qty);
         }
-        Cart::destroy();   
+        Cart::destroy();
         return redirect()->route('getcart')
         ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !', 'total_count'=>$total]);
-        
     }
 
     /**

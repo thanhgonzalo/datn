@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\Products;
+use App\Http\Service\ServiceProduct;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -86,13 +88,21 @@ class PayMentController extends Controller
                 $o_id =$order->id;
 
                 foreach (Cart::content() as $row) {
+                    // Insert to orders details
                    $detail = new orders_detail();
                    $detail->pro_id = $row->id;
                    $detail->qty = $row->qty;
                    $detail->o_id = $o_id;
                    $detail->created_at = new datetime;
                    $detail->save();
+                   // Update qty in products table
+
+                    $product = new products();
+                    $product->pro_id = $row->id;
+                    $product->qty = $product->qty - $row->qty;
+                    $product->save();
                 }
+
             Cart::destroy();
             return redirect()->route('getcart')
             ->with(['flash_level'=>'result_msg','flash_massage'=>'Thanh toán đơn hàng thành công !','total_count'=>$total]);
