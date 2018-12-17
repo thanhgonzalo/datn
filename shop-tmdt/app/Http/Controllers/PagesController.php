@@ -116,7 +116,6 @@ class PagesController extends Controller
                 ->with(['flash_error'=>'result_msg',
                     'err_massage'=>' Sản phẩm bạn chọn quá nhiều so với kho hàng '.$strShopIdFail, 'total_count'=>$total]);
         }
-        exit;
         // Insert into order
         $order->c_id = Auth::user()->id;
         $order->qty = Cart::count();

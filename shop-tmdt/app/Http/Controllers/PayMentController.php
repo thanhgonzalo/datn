@@ -67,6 +67,8 @@ class PayMentController extends Controller
         $execution->setPayerId($_GET['PayerID']);
         $payment = payment::get($payment_id,$this->apiContext);
 
+        $serviceProduct = new ServiceProduct();
+        $strShopIdFail = "";
         try {
             $result = $payment->execute($execution,$this->apiContext);
             if ($result->getState() =='approved') 
@@ -75,7 +77,27 @@ class PayMentController extends Controller
                 $total =0;
                 foreach (Cart::content() as $row) {
                     $total = $total + ( $row->qty * $row->price);
+                    // Check number products in shop
+                    $checkNumberProducts = $serviceProduct->checkNumberProducts($row->id, $row->qty);
+                    $arrayShopIdFail =  array();
+                    $arrayQty = array();
+                    if(is_numeric($checkNumberProducts)) {
+                        $arrayShopIdFail[] = $row->id;
+                        $arrayQty[] = $checkNumberProducts;
+                    }
+                    if($arrayShopIdFail != null) {
+                        foreach ($arrayShopIdFail as $key => $value) {
+                            $strShopIdFail .= "\t" .'. Sản phẩm số '. $arrayShopIdFail[$key] . ' còn ' . $arrayQty[$key] .' chiếc'."\n";
+                        }
+                    }
                 }
+                if($strShopIdFail != "") {
+                    return redirect()->route('getcart')
+                        ->with(['flash_error'=>'result_msg',
+                            'err_massage'=>' Sản phẩm bạn chọn quá nhiều so với kho hàng '.$strShopIdFail, 'total_count'=>$total]);
+                }
+
+                // Insert into order
                 $order->c_id = Auth::user()->id;
                 $order->qty = Cart::count();
                 $order->sub_total = floatval($total);
@@ -95,12 +117,9 @@ class PayMentController extends Controller
                    $detail->o_id = $o_id;
                    $detail->created_at = new datetime;
                    $detail->save();
-                   // Update qty in products table
 
-                    $product = new products();
-                    $product->pro_id = $row->id;
-                    $product->qty = $product->qty - $row->qty;
-                    $product->save();
+                   // Update qty in products table
+                    $serviceProduct->updateQty($row->id, $row->qty);
                 }
 
             Cart::destroy();
