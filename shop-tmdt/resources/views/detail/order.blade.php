@@ -64,7 +64,7 @@
                 </div>              
                 <button type="submit" class="btn btn-primary pull-right"> Đặt hàng (COD)</button> 
               </form>
-              @else 
+              @elseif ($_GET['paymethod'] =='paypal' )
               <form action="{!!url('/payment')!!}" method="Post" accept-charset="utf-8">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
@@ -75,8 +75,21 @@
                   </label>
                 </div>
                   <br>                
-                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Paypal </button> &nbsp;
+                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Paypal </button>
               </form>
+                @else
+                <form action="{!!url('/paymentbaokim')!!}" method="Post" accept-charset="utf-8">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label for="">
+                            - Tên khách hàng : <strong>{{ Auth::user()->name }} </strong> &nbsp;
+                            - Điện thoại: <strong> {{ Auth::user()->phone }}</strong> &nbsp;
+                            - Địa chỉ: <strong> {{ Auth::user()->address }}</strong>
+                        </label>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Bảo kim </button>
+                </form>
               @endif
             </div>
           </div>   
