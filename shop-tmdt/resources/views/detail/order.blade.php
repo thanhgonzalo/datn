@@ -75,10 +75,10 @@
                   </label>
                 </div>
                   <br>                
-                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Paypal </button>
+                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua OnePay </button>
               </form>
                 @else
-                <form action="{!!url('/paymentbaokim')!!}" method="Post" accept-charset="utf-8">
+                <form action="{!!url('/paymentonepay')!!}" method="Post" accept-charset="utf-8">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label for="">
@@ -88,7 +88,7 @@
                         </label>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Bảo kim </button>
+                    <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua OnePay </button>
                 </form>
               @endif
             </div>
