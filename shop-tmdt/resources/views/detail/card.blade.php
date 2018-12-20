@@ -97,6 +97,7 @@
                                                 <label for="paymethod">Chọn phương thức thanh toán</label>
                                                 <select name="paymethod" id="inputPaymethod" class="form-control" required="required">
                                                     <option value="">Hãy chọn phương thức thanh toán</option>
+                                                    <option value="cod">COD (thanh toán khi nhận hàng)</option>
                                                     <option value="paypal">Thanh toán trực tuyến ( Paypal )</option>
                                                     <option value="onpay">Onepay (Thanh toán qua Onepay)</option>
                                                 </select>

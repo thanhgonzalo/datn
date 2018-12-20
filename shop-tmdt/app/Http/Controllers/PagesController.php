@@ -122,7 +122,7 @@ class PagesController extends Controller
         $order->sub_total = floatval($total);
         $order->total =  floatval($total);
         $order->note = $rq->txtnote;
-        $order->status = 0;
+        $order->status = 2;
         $order->type = 'cod';
         $order->created_at = new datetime;
         $order->save();
@@ -138,7 +138,7 @@ class PagesController extends Controller
             $detail->save();
 
             // Update qty products in table
-            $serviceProduct->updateQty($row->id, $row->qty);
+            //$serviceProduct->updateQty($row->id, $row->qty);
         }
         Cart::destroy();
         return redirect()->route('getcart')

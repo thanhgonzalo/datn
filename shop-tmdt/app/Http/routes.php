@@ -58,6 +58,7 @@ Route::group(['prefix' => 'shops'], function() {
 
         Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'ordersController@getDetailByShop'])->where('id','[0-9]+');
         Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'ordersController@postDetailByShop'])->where('id','[0-9]+');
+        Route::get('/guihang/{id}',['as'  =>'sendorder','uses' => 'OrdersController@sendOrder'])->where('id','[0-9]+');
     });
 
     // -------------------- quan ly thong tin khach hang--------------------

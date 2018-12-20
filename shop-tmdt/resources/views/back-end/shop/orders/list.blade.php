@@ -56,10 +56,10 @@
                                             <td>{!!$row->created_at!!}</td>
                                             <td>{!!$row->total!!} Vnd</td>
                                             <td>
-                                                @if($row->status ==0)
-                                                    <span style="color:#d35400;">Chưa xác nhận</span>
-                                                @else
+                                                @if($row->status == 1)
                                                     <span style="color:#27ae60;"> Đã xác nhận</span>
+                                                @else
+                                                    <span style="color:#d35400;">Chưa xác nhận</span>
                                                 @endif
                                             </td>
                                             <td>

@@ -102,7 +102,7 @@ class PayMentController extends Controller
                 $order->qty = Cart::count();
                 $order->sub_total = floatval($total);
                 $order->total =  floatval($total);
-                $order->status = 1;
+                $order->status = 3;
                 $order->type = 'paypal';
                 $order->note = $result->id;
                 $order->created_at = new datetime;
@@ -119,7 +119,7 @@ class PayMentController extends Controller
                    $detail->save();
 
                    // Update qty in products table
-                    $serviceProduct->updateQty($row->id, $row->qty);
+                    //$serviceProduct->updateQty($row->id, $row->qty);
                 }
 
             Cart::destroy();

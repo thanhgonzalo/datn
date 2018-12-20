@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Service\ServiceOrder;
+use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceShop;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,7 @@ class ordersController extends Controller
     public function getDetailByShop($id) {
         $order = orders::where('id',$id)->first();
         $data = DB::table('orders_detail')
+            ->select('products.id','products.images','products.name','products.intro','orders_detail.qty','products.price','products.status')
             ->join('products', 'products.id', '=', 'orders_detail.pro_id')
             ->groupBy('orders_detail.id')
             ->where('o_id',$id)
@@ -51,10 +53,27 @@ class ordersController extends Controller
         }
     }
 
-    public function postDetailByShop($id) {
+    public function sendOrder($id) {
+        // Export CSV
+    }
+    public function postDetailByShop($id, Request $request) {
+
+        if ($request->input('send-order') != null) {
+            return redirect('shops/donhang/guihang/'.$id);
+        }
+
+        $arrShopId = $request->input('id_shop');
+        $arrQty = $request->input('qty');
+
         $order = orders::find($id);
         $order->status = 1;
         $order->save();
+
+        $serviceProduct = new ServiceProduct();
+        foreach ($arrShopId as $key => $value) {
+            $serviceProduct->updateQty($value, $arrQty[$key]);
+        }
+
         return redirect('shops/donhang')
             ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã xác nhận đơn hàng thành công !']);
     }

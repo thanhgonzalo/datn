@@ -22,4 +22,5 @@ class ServiceShop
         $shopDatabase = new ShopDatabase();
         $shopDatabase->createShop($data);
     }
+
 }
