@@ -15,7 +15,12 @@ return array(
         'vpc_TicketNo'    => '%3A%3A1'
     ),
     'onepay_customer' => array(
-        'vpc_SHIP_Street01' => 'Hải DƯơng'
+        'vpc_SHIP_Street01'  => 'Hải Dương',
+        'vpc_SHIP_Provice'   => 'Thanh Hà',
+        'vpc_SHIP_City'      => 'Thành Phố',
+        'vpc_Customer_Phone' => '0967211692',
+        'vpc_Customer_Email' => 'thanhnd@gmail.com',
+        'vpc_Customer_Id'    => '3'
     ),
 );
 

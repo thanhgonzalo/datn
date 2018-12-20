@@ -24,6 +24,7 @@ Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']
 Route::get('dat-hang', ['as'  => 'getorder', 'uses' =>'PagesController@getorder']);
 Route::post('dat-hang', ['as'  => 'postorder', 'uses' =>'PagesController@postorder']);
 Route::post('paymentonepay', ['as'  => 'onepay', 'uses' =>'OnePayController@postorder']);
+Route::get('paymentonepay', ['as'  => 'onepay', 'uses' =>'OnePayController@getorder']);
 // category
 Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
 Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
