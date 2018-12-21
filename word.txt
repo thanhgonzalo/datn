@@ -7,3 +7,9 @@
 
 5. thực hiện code bảo kim
 6. (các trạng thái 0, 1, 2) => đặt hàng, 1 chuyển hàng, 2 ok => tiền thành công.
+
+
+
+https://medium.com/@hasangilak/laravel-xampp-sending-local-email-smtp-e2010704d6d4
+
+Xác nhận đơn hàng bằng link => tạo token trong bảng order

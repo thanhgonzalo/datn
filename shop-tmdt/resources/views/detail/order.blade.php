@@ -75,7 +75,7 @@
                   </label>
                 </div>
                   <br>                
-                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua OnePay </button>
+                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Paypal </button>
               </form>
                 @else
                 <form action="{!!url('/paymentonepay')!!}" method="Post" accept-charset="utf-8">
