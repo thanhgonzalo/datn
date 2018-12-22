@@ -40,7 +40,7 @@
                     <tr>
                       <td colspan="3"><strong>Tổng cộng :</strong> </td>
                       <td>{!!Cart::count()!!}</td>
-                      <td colspan="2" style="color:red;">{!!Cart::subtotal();!!} Vnd</td>                      
+                      <td colspan="2" style="color:red;">{!!Cart::subtotal();!!} Vnd</td>
                     </tr>                    
                   </tbody>
                 </table>                
@@ -75,7 +75,7 @@
                   </label>
                 </div>
                   <br>                
-                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua OnePay </button>
+                <button type="submit" class="btn btn-danger pull-left"> Thanh toán qua Paypal </button>
               </form>
                 @else
                 <form action="{!!url('/paymentonepay')!!}" method="Post" accept-charset="utf-8">

@@ -77,7 +77,7 @@
                                                 <td> <img src="{!!url('public/uploads/products/'.$row->images)!!}" alt="iphone" width="50" height="40"></td>
                                                 <td>{!!$row->name!!}</td>
                                                 <td>{!!$row->intro!!}</td>
-                                                <td>{!!$row->qty!!} </td>
+                                                <td>{!!$row->qty!!} </td>return xacnhan('Xác nhận đơn hàng này ?')
                                                 <td>{!! number_format($row->price) !!} Vnđ</td>
                                                 <td>
                                                     @if($row->status ==1)
@@ -96,7 +96,13 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" onclick="return xacnhan('Xác nhận đơn hàng này ?')"  class="btn btn-danger"> Xác nhận đơn hàng </button>
+                    @if($order->status != 1)
+                        <button type="submit" onclick="return xacnhan('Xác nhận đơn hàng này ?')"  class="btn btn-danger"> Xác nhận đơn hàng </button>
+                    @elseif
+                        <input type="hidden" name="send-order" value="1">
+                        <button type="submit" onclick="return xacnhan('Gửi đơn hàng này đi')"  class="btn btn-success"> Xuất hàng </button>
+                    @endif
+
                 </form>
             </div>
         </div><!--/.row-->
