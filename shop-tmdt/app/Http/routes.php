@@ -3,6 +3,7 @@
 Route::auth();
 Route::get('/user', 'HomeController@index')->name('home');
 Route::get('/user/edit', 'HomeController@edit');
+Route::get('demo', ['as'  => 'index', 'uses' =>'GoShipController@requestapi']);
 
 // admin route 
 Route::get('admin/login', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@showLoginForm']);
@@ -25,6 +26,7 @@ Route::get('dat-hang', ['as'  => 'getorder', 'uses' =>'PagesController@getorder'
 Route::post('dat-hang', ['as'  => 'postorder', 'uses' =>'PagesController@postorder']);
 Route::post('paymentonepay', ['as'  => 'onepay', 'uses' =>'OnePayController@postorder']);
 Route::get('paymentonepay', ['as'  => 'onepay', 'uses' =>'OnePayController@getorder']);
+Route::get('dat-hang/confirm/{token}', ['as' => 'confirm', 'uses' => 'OrdersController@confimOrder']);
 // category
 Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
 Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);

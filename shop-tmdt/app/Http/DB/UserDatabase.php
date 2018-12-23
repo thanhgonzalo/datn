@@ -10,6 +10,7 @@ namespace App\Http\DB;
 
 
 use App\Http\Model\Products;
+use Illuminate\Support\Facades\DB;
 
 class UserDatabase
 {
@@ -37,5 +38,13 @@ class UserDatabase
             ->paginate(10);
 
         return $listUser;
+    }
+
+    public function getEmail($userId) {
+        $email = DB::table('users')
+            ->select('email')
+            ->where('id', $userId)
+            ->first();
+        return $email;
     }
 }

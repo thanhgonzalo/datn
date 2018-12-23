@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceOrder;
 use App\Http\Service\ServiceProduct;
+use App\Http\Service\ServiceUser;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,6 +16,7 @@ use App\Http\Model\News;
 use App\Http\Model\Orders;
 use App\Http\Model\Orders_detail;
 use DB,Cart,Datetime;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class PagesController extends Controller
@@ -73,10 +76,29 @@ class PagesController extends Controller
         Cart::destroy();   
         return redirect()->route('index');   
     }
-    public function getcart()
-    {
-    return view ('detail.card')
-        ->with('slug','Chi tiết đơn hàng');
+    public function getcart() {
+        if(Session::get('orderId') != null) {
+            $orderId = Session::get('orderId');
+            $this->sendMailConfirm($orderId);
+        }
+        return view ('detail.card')->with('slug','Chi tiết đơn hàng');
+    }
+
+    private function sendMailConfirm($orderId) {
+        $serviceOrder = new ServiceOrder();
+        $order = $serviceOrder->getOrder($orderId);
+
+        $serviceUser = new ServiceUser();
+        $email = $serviceUser->getEmail($order->c_id);
+
+
+        Mail::send('mail.confirmorder', ['data' => $order], function ($message) use ($email) {
+            $message->to($email, 'Artisans Web')
+                ->subject('Xác nhận đơn hàng từ chothuongmaidientu');
+            $message->from('thanhndbkhn@gmail.com','chothuongmaidientu');
+        });
+
+
     }
     public function getorder()
     {
@@ -92,8 +114,9 @@ class PagesController extends Controller
     {
         $order = new orders();
         $serviceProduct = new ServiceProduct();
-
-        $total =0;
+        $date = new DateTime();
+        $md5 = md5($date->getTimestamp());
+        $total = 0;
         $strShopIdFail = "";
         foreach (Cart::content() as $row) {
             $total = $total + ( $row->qty * $row->price);
@@ -124,6 +147,7 @@ class PagesController extends Controller
         $order->note = $rq->txtnote;
         $order->status = 2;
         $order->type = 'cod';
+        $order->token = $md5;
         $order->created_at = new datetime;
         $order->save();
         $o_id =$order->id;
@@ -142,7 +166,8 @@ class PagesController extends Controller
         }
         Cart::destroy();
         return redirect()->route('getcart')
-        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !', 'total_count'=>$total]);
+        ->with(['flash_level'=>'result_msg','flash_massage'=>' Chúng tôi vừa gửi cho bạn 1 email xác nhận, hãy kiểm tra email!',
+            'total_count'=>$total, 'orderId' => $o_id]);
     }
 
     /**

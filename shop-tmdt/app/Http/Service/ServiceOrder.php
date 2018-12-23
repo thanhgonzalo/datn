@@ -30,4 +30,14 @@ class ServiceOrder
         $orderDataBase = new OrderDatabase();
         return $orderDataBase->getListOrderByShopId($shopId);
     }
+
+    public function getOrder($orderId) {
+        $orderDataBase = new OrderDatabase();
+        return $orderDataBase->getOrder($orderId);
+    }
+
+    public function confimOrder($token) {
+        $orderDataBase = new OrderDatabase();
+        $orderDataBase-> confimOrder($token);
+    }
 }

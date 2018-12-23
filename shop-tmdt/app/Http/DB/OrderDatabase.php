@@ -9,6 +9,7 @@
 namespace App\Http\DB;
 
 
+use App\Http\Model\Orders;
 use App\Http\Model\Products;
 use Illuminate\Support\Facades\DB;
 
@@ -49,5 +50,18 @@ class OrderDatabase
             ->whereIn('orders.id', $listOrderId)
             ->paginate(10);
         return $listOrder;
+    }
+
+    public function getOrder($orderId) {
+        $order = DB::table('orders')
+            ->where('id',$orderId)
+            ->first();
+        return $order;
+    }
+
+    public function  confimOrder($token) {
+        DB::table('orders')
+            ->where('orders.token', $token)
+            ->update(['orders.status' => 5]);
     }
 }

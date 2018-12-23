@@ -46,15 +46,4 @@ class UsersController extends Controller
    public function postEditCustomerByShop($id, Request $request) {
         var_dump($id);
    }
-
-   public function resetPass(Request $request) {
-        $email = $request->input('email');
-        $data = array('name' => 'ThanhND', 'body' => 'Test');
-        Mail::send('mail.remember', ['data' => $data['body']], function ($message) use ($email) {
-            $message->to($email, 'Artisans Web')
-                    ->subject('ThanhND test mail');
-            $message->from('thanhndbkhn@gmail.com','ThanhND');
-        });
-
-   }
 }

@@ -84,7 +84,7 @@ class OnePayController extends Controller
             'vpc_Customer_Id' => 'thanhnd@gmail.com',
             'vpc_Customer_Phone' => '0967211692',
             'vpc_MerchTxnRef' => '20181219224614121363325419',
-            'vpc_OrderInfo' => 'Dat hang test',
+            'vpc_OrderInfo' => $o_id,
             'vpc_ReturnURL' => 'http://chothuongmaidientu.com.vn/paymentonepay',
             'vpc_SHIP_City' => 'Hà Nội',
             'vpc_SHIP_Country' => 'Viet Nam',
@@ -102,7 +102,8 @@ class OnePayController extends Controller
         Cart::destroy();
         if($_GET['vpc_TxnResponseCode'] != null) {
             return redirect()->route('getcart')
-                ->with(['flash_level'=>'result_msg','flash_massage'=>'Thanh toán đơn hàng thành công !','total_count'=>($_GET['vpc_Amount'])/100]);
+                ->with(['flash_level'=>'result_msg','flash_massage'=>'Chúng tôi vừa gửi cho bạn 1 email xác nhận, hãy kiểm tra email',
+                    'total_count'=>($_GET['vpc_Amount'])/100, 'orderId' => $_GET['vpc_OrderInfo']]);
         }else {
             return redirect()->route('getcart')
                 ->with(['flash_error'=>'result_msg',

@@ -53,6 +53,11 @@ class ordersController extends Controller
         }
     }
 
+    public function confimOrder($token) {
+        $serviceOrder = new ServiceOrder();
+        $serviceOrder->confimOrder($token);
+    }
+
     public function sendOrder($id) {
         // Export CSV
     }

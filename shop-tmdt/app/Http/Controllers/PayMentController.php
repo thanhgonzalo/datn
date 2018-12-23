@@ -124,7 +124,8 @@ class PayMentController extends Controller
 
             Cart::destroy();
             return redirect()->route('getcart')
-            ->with(['flash_level'=>'result_msg','flash_massage'=>'Thanh toán đơn hàng thành công !','total_count'=>$total]);
+            ->with(['flash_level'=>'result_msg','flash_massage'=>'Chúng tôi vừa gửi cho bạn 1 email xác nhận, hãy kiểm tra email',
+                'total_count'=>$total, 'orderId' => $o_id]);
             } else {
                 return redirect()->route('getcart')
                 ->with(['flash_level'=>'result_msg','flash_massage'=>' Thanh toán thất bại !']);  

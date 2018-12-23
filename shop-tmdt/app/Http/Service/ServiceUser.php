@@ -22,4 +22,10 @@ class ServiceUser
         $userDatabase = new UserDatabase();
         return $userDatabase->getListUserByShopId($shopId);
     }
+
+    public function getEmail($userId) {
+        $userDatabase = new UserDatabase();
+        $emailObj = $userDatabase->getEmail($userId);
+        return $emailObj->email;
+    }
 }
