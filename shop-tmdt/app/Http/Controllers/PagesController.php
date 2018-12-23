@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceMail;
 use App\Http\Service\ServiceOrder;
 use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceUser;
@@ -91,15 +92,10 @@ class PagesController extends Controller
         $serviceUser = new ServiceUser();
         $email = $serviceUser->getEmail($order->c_id);
 
-
-        Mail::send('mail.confirmorder', ['data' => $order], function ($message) use ($email) {
-            $message->to($email, 'Artisans Web')
-                ->subject('Xác nhận đơn hàng từ chothuongmaidientu');
-            $message->from('thanhndbkhn@gmail.com','chothuongmaidientu');
-        });
-
-
+        $serviceMail = new ServiceMail();
+        $serviceMail->sendConfirm($order, $email);
     }
+
     public function getorder()
     {
         if (Auth::guest()) {

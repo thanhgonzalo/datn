@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Service\ServiceGoShip;
+use App\Http\Service\ServiceMail;
 use App\Http\Service\ServiceOrder;
 use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceShop;
@@ -78,11 +79,17 @@ class ordersController extends Controller
 
         $serviceOrder = new ServiceOrder();
         $order= $serviceOrder->getInfoOrder($orderId);
-        $shipment = $serviceGoShip->createShipment($order, $reponscecall->access_token);
+        //$shipment = $serviceGoShip->createShipment($order, $reponscecall->access_token);
 
-        if($shipment->code != 200) {
-            var_dump('khong gui dc hang');
-        }
+        //if($shipment->code != 200) {
+            //var_dump('khong gui dc hang');
+        //}
+
+        // Get info shipment;
+        $shipmentOrder = $serviceGoShip->getInfoShipment($order, $reponscecall->access_token);
+        // Send Mail shipment:
+        $serviceMail = new ServiceMail();
+        $serviceMail->sendMailShip($shipmentOrder);
 
         return redirect('shops/donhang')
             ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã đăng ký gửi hàng qua GoShip!']);

@@ -3,7 +3,6 @@
 Route::auth();
 Route::get('/user', 'HomeController@index')->name('home');
 Route::get('/user/edit', 'HomeController@edit');
-Route::get('demo', ['as'  => 'index', 'uses' =>'GoShipController@requestapi']);
 
 // admin route 
 Route::get('admin/login', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@showLoginForm']);

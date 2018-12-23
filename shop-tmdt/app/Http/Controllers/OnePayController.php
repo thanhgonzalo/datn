@@ -83,7 +83,7 @@ class OnePayController extends Controller
             'vpc_Customer_Email' => 'thanhnd@gmail.com',
             'vpc_Customer_Id' => 'thanhnd@gmail.com',
             'vpc_Customer_Phone' => '0967211692',
-            'vpc_MerchTxnRef' => '20181219224614121363325419',
+            'vpc_MerchTxnRef' => md5('2018121922'),
             'vpc_OrderInfo' => $o_id,
             'vpc_ReturnURL' => 'http://chothuongmaidientu.com.vn/paymentonepay',
             'vpc_SHIP_City' => 'Hà Nội',

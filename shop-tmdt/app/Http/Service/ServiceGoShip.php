@@ -43,6 +43,33 @@ class ServiceGoShip
         return $server_output;
     }
 
+    public function getInfoShipment($order, $token) {
+        $url = 'http://sandbox.goship.io/api/v2/shipments';
+        $this->header = array(
+            'Accept: application/json',
+            'Content-Type: application/json',
+            'Authorization: Bearer '.$token
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->header);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $shipmentInfo = curl_exec ($ch);
+        str_replace('bool(true)', '', $shipmentInfo);
+        curl_close ($ch);
+        $shipmentInfo = json_decode($shipmentInfo);
+        $listShip = $shipmentInfo->data;
+        $shipOrder = null;
+        foreach ($listShip as $shipment) {
+            if($shipment->address_to->email == $order->email) {
+                $shipOrder = $shipment;
+                break;
+            }
+        }
+        return $shipOrder;
+    }
     public function createShipment($order, $token) {
         $url = 'http://sandbox.goship.io/api/v2/shipments';
         $this->header = array(
@@ -70,6 +97,7 @@ class ServiceGoShip
                     'name'     => $order->name,
                     'phone'    => $order->phone,
                     'street'   => $order->address,
+                    'email'    => $order->email,
                     'district' => '100200',
                     'city'     => '100000'
                 ],
