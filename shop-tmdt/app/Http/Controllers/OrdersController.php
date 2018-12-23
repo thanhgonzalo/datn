@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\ServiceGoShip;
 use App\Http\Service\ServiceOrder;
 use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceShop;
@@ -58,8 +59,34 @@ class ordersController extends Controller
         $serviceOrder->confimOrder($token);
     }
 
-    public function sendOrder($id) {
-        // Export CSV
+    public function sendOrder($orderId) {
+        // Calculate money ship
+
+        // Call API GoShip
+        $serviceGoShip = new ServiceGoShip();
+        $reponscecall = $serviceGoShip->callGoShip();
+        if($reponscecall->code != 200) {
+            var_dump('khong gui duoc hang');
+            exit;
+        }
+
+        // Get Fee
+        $listOrderShip = $serviceGoShip->getFee($orderId, $reponscecall->access_token);
+        // Create shipmment;
+
+        // Get info Order;
+
+        $serviceOrder = new ServiceOrder();
+        $order= $serviceOrder->getInfoOrder($orderId);
+        $shipment = $serviceGoShip->createShipment($order, $reponscecall->access_token);
+
+        if($shipment->code != 200) {
+            var_dump('khong gui dc hang');
+        }
+
+        return redirect('shops/donhang')
+            ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã đăng ký gửi hàng qua GoShip!']);
+
     }
     public function postDetailByShop($id, Request $request) {
 

@@ -64,4 +64,13 @@ class OrderDatabase
             ->where('orders.token', $token)
             ->update(['orders.status' => 5]);
     }
+
+    public function getInfoOrder($orderId) {
+        $orderInfo = DB::table('orders')
+            ->select('orders.id','orders.total','orders.type','users.name','users.email','users.phone','users.address')
+            ->join('users','orders.c_id', '=', 'users.id')
+            ->where('orders.id', '=', $orderId)
+            ->first();
+        return $orderInfo;
+    }
 }

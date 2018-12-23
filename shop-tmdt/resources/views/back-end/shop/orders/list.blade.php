@@ -58,8 +58,10 @@
                                             <td>
                                                 @if($row->status == 1)
                                                     <span style="color:#27ae60;"> Đã xác nhận</span>
-                                                @else
-                                                    <span style="color:#d35400;">Chưa xác nhận</span>
+                                                @elseif ($row->status == 5)
+                                                    <span style="color:#d35400;">Chưa xác nhận gửi hàng (KH đã xác nhận)</span>
+                                                @elseif ($row->status != 5)
+                                                    <span style="color:#902b2b;">Khách hàng chưa xác nhận</span>
                                                 @endif
                                             </td>
                                             <td>

@@ -40,4 +40,9 @@ class ServiceOrder
         $orderDataBase = new OrderDatabase();
         $orderDataBase-> confimOrder($token);
     }
+
+    public function getInfoOrder($orderId) {
+        $orderDataBase = new OrderDatabase();
+        return $orderDataBase->getInfoOrder($orderId);
+    }
 }
