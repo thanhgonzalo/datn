@@ -52,11 +52,14 @@ class OnePayController extends Controller
         }
 
         // Insert into order
+        $date = new \DateTime();
+        $md5 = md5($date->getTimestamp());
         $order->c_id = Auth::user()->id;
         $order->qty = Cart::count();
         $order->sub_total = floatval($total);
         $order->total =  floatval($total);
         $order->status = 4;
+        $order->token = $md5;
         $order->type = 'onepay';
         $order->note = 'Thanh toán qua onepay';
         $order->created_at = new \DateTime();
