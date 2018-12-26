@@ -36,7 +36,7 @@ class OrderDatabase
         return $totalNewOrder;
     }
 
-    public function getListOrderByShopId($shopId)
+    public function getListOrderByShopId($shopId, $listStatus)
     {
         $listProductId = Products::select('id')->where('shop_id', '=', $shopId)->get()->toArray();
         $listOrderId = DB::table('orders')
@@ -48,6 +48,7 @@ class OrderDatabase
             ->select('orders.id', 'users.name', 'users.address', 'users.phone', 'users.email', 'orders.created_at','orders.total','orders.status')
             ->join('users', 'users.id', '=', 'orders.c_id')
             ->whereIn('orders.id', $listOrderId)
+            ->whereIn('orders.status', $listStatus)
             ->paginate(10);
         return $listOrder;
     }

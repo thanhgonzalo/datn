@@ -98,10 +98,13 @@ class PayMentController extends Controller
                 }
 
                 // Insert into order
+                $date = new \DateTime();
+                $md5 = md5($date->getTimestamp());
                 $order->c_id = Auth::user()->id;
                 $order->qty = Cart::count();
                 $order->sub_total = floatval($total);
                 $order->total =  floatval($total);
+                $order->token = $md5;
                 $order->status = 3;
                 $order->type = 'paypal';
                 $order->note = $result->id;

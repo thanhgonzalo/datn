@@ -16,7 +16,7 @@ use DB;
 
 class ordersController extends Controller
 {
-    public function getListByShop() {
+    public function getListByShop(Request $request) {
         session_start();
         if(!isset($_SESSION["shop"])) {
             return redirect('/');
@@ -25,11 +25,15 @@ class ordersController extends Controller
         $serviceShop = new ServiceShop();
         $email       = $_SESSION["shop"];
         $shop        = $serviceShop->getShopByEmail($email);
-
+        $orderStatus = 0;
+        if(isset($_GET['statusOrder'])){
+            $orderStatus = $_GET['statusOrder'];
+        }
         $serviceOrder = new ServiceOrder();
-        $listOrderShop = $serviceOrder->getListOrderByShopId($shop->id);
-        return view('back-end.shop.orders.list',['data'=>$listOrderShop]);
+        $listOrderShop = $serviceOrder->getListOrderByShopId($shop->id, $orderStatus);
+        return view('back-end.shop.orders.list',['data'=>$listOrderShop,'orderStatus' => $orderStatus]);
     }
+
 
     public function getDetailByShop($id) {
         $order = orders::where('id',$id)->first();
@@ -91,6 +95,11 @@ class ordersController extends Controller
         $serviceMail = new ServiceMail();
         $serviceMail->sendMailShip($shipmentOrder);
 
+        // Cập nhật trạng thái đơn hàng đang được gửi đi.
+        $order = orders::find($orderId);
+        $order->status = 6;
+        $order->save();
+
         return redirect('shops/donhang')
             ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã đăng ký gửi hàng qua GoShip!']);
 
@@ -113,7 +122,7 @@ class ordersController extends Controller
             $serviceProduct->updateQty($value, $arrQty[$key]);
         }
 
-        return redirect('shops/donhang')
+        return redirect('shops/donhang/detail/'.$id)
             ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã xác nhận đơn hàng thành công !']);
     }
 

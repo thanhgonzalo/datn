@@ -26,9 +26,19 @@ class ServiceOrder
         return $orderDatabase->getNumberOrderNewByShopId($shopId, $agoDate);
     }
 
-    public function getListOrderByShopId($shopId) {
+    public function getListOrderByShopId($shopId, $orderStatus) {
         $orderDataBase = new OrderDatabase();
-        return $orderDataBase->getListOrderByShopId($shopId);
+        $listStatus = [];
+
+        switch ($orderStatus) {
+            case 0: $listStatus = [0,1,2,3,4,5,6,7]; break;
+            case 1: $listStatus = [1]; break;
+            case 5: $listStatus = [5]; break;
+            case 6: $listStatus = [6]; break;
+            case 7: $listStatus = [7]; break;
+            default: $listStatus = [2,3,4]; break;
+        }
+        return $orderDataBase->getListOrderByShopId($shopId, $listStatus);
     }
 
     public function getOrder($orderId) {
