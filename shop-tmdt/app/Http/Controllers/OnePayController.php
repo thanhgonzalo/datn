@@ -81,12 +81,12 @@ class OnePayController extends Controller
 
         $data = array(
             'Title' => 'Test',
-            'AgainLink' => 'http://chothuongmaidientu.com.vn/dat-hang?paymethod=onpay',
+            'AgainLink' => 'http://chothuongmaidientu.com.vn/dat-hang?paymethod=onepay',
             'vpc_Amount' => $total,
             'vpc_Customer_Email' => 'thanhnd@gmail.com',
             'vpc_Customer_Id' => 'thanhnd@gmail.com',
             'vpc_Customer_Phone' => '0967211692',
-            'vpc_MerchTxnRef' => md5('2018121922'),
+            'vpc_MerchTxnRef' => md5(rand(10,1000000).''),
             'vpc_OrderInfo' => $o_id,
             'vpc_ReturnURL' => 'http://chothuongmaidientu.com.vn/paymentonepay',
             'vpc_SHIP_City' => 'Hà Nội',

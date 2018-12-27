@@ -83,7 +83,7 @@ class ordersController extends Controller
 
         $serviceOrder = new ServiceOrder();
         $order= $serviceOrder->getInfoOrder($orderId);
-        //$shipment = $serviceGoShip->createShipment($order, $reponscecall->access_token);
+        $shipment = $serviceGoShip->createShipment($order, $reponscecall->access_token);
 
         //if($shipment->code != 200) {
             //var_dump('khong gui dc hang');
