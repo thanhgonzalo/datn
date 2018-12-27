@@ -85,9 +85,9 @@ class ordersController extends Controller
         $order= $serviceOrder->getInfoOrder($orderId);
         $shipment = $serviceGoShip->createShipment($order, $reponscecall->access_token);
 
-        //if($shipment->code != 200) {
-            //var_dump('khong gui dc hang');
-        //}
+        if($shipment->code != 200) {
+            var_dump('khong gui dc hang'); exit;
+        }
 
         // Get info shipment;
         $shipmentOrder = $serviceGoShip->getInfoShipment($order, $reponscecall->access_token);
@@ -104,10 +104,18 @@ class ordersController extends Controller
             ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã đăng ký gửi hàng qua GoShip!']);
 
     }
+
+    public function exportBill ($orderId) {
+        return view('back-end.orders.bill');
+    }
     public function postDetailByShop($id, Request $request) {
 
         if ($request->input('send-order') != null) {
             return redirect('shops/donhang/guihang/'.$id);
+        }
+
+        if($request->input('export-bill') != null) {
+            return redirect('shops/donhang/exportbill/'.$id);
         }
 
         $arrShopId = $request->input('id_shop');

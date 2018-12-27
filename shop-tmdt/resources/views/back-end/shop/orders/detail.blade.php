@@ -82,10 +82,16 @@
                                                 <td name="qty">{!!$row->qty!!} </td>
                                                 <td>{!! number_format($row->price) !!} Vnđ</td>
                                                 <td>
-                                                    @if($row->status ==1 || $row->qty == 0)
-                                                        <span style="color:blue;">Còn hàng</span>
-                                                    @else
-                                                        <span style="color:#27ae60;"> Tạm hết</span>
+                                                    @if($order->status == 1)
+                                                        <span style="color:#27ae60;"> Đã xác nhận</span>
+                                                    @elseif ($order->status == 5)
+                                                        <span style="color:#d35400;">Chưa xác nhận gửi hàng (KH đã xác nhận)</span>
+                                                    @elseif ($order->status == 6)
+                                                        <span style="color:#1c1cd3;">Đang gửi hàng</span>
+                                                    @elseif ($order->status == 7)
+                                                        <span style="color:#d3b6b9;">Đã gửi hàng kết thúc</span>
+                                                    @elseif ($order->status != 5)
+                                                        <span style="color:#902b2b;">Khách hàng chưa xác nhận</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -103,6 +109,9 @@
                     @elseif ($order->status == 1)
                         <input type="hidden" name="send-order" value="{{$order->id}}">
                         <button type="submit" onclick="return xacnhan('Gửi đơn hàng này đi')"  class="btn btn-success"> Xuất hàng </button>
+                    @elseif ($order->status == 6)
+                        <input type="hidden" name="export-bill" value="{{$order->id}}">
+                        <button type="submit" onclick="return xacnhan('Xuất hóa đơn cho đơn hàng này')"  class="btn btn-success"> Xuất hóa đơn </button>
                     @endif
                 </form>
             </div>
