@@ -24,6 +24,8 @@ class ShopDatabase
             'email'          => $data['email'],
             'password'       => bcrypt($data['password']),
             'phone'          => $data['phone'],
+            'name_bank'      => $data['name_bank'],
+            'name_user_shop' => $data['name_user_shop'],
             'remember_token' => $data['token'],
             'address'        => $data['address'],
             'status'         => '1',

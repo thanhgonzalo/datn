@@ -33,30 +33,6 @@
                     </div>
                 </div>
             @endif
-
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="name">Số TK</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
-                        <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-money" style="width: 16px"></i></div>
-                        <input type="text" name="id_bank" class="form-control" id="" placeholder="" required="required"
-                               autofocus="" value="{{ old('id_bank') }}">
-                    </div>
-                </div>
-            </div>
-            @if ($errors->has('id_bank'))
-                <div class="col-md-3">
-                    <div class="form-control-static">
-                        <span class="text-danger align-middle">
-                            <i class="fa fa-close">{{ $errors->first('id_bank') }}</i>
-                        </span>
-                    </div>
-                </div>
-            @endif
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -174,6 +150,84 @@
                     </div>
                 </div>
             @endif
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Tên Ngân Hàng</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
+                        <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-bank" style="width: 16px"></i></div>
+                        <select name="name_bank" class="form-control" id="" placeholder="" required="required"
+                               autofocus="">
+                            <option value="">Chọn ngân hàng</option>
+                            <option value="vietcombank" {{ old('name_bank') == 'vietcombank' ? 'selected' : '' }}>Vietcombank</option>
+                            <option value="teckcombank" {{ old('name_bank') == 'teckcombank' ? 'selected' : '' }}>Teckcombank</option>
+                            <option value="agribank" {{ old('name_bank') == 'agribank' ? 'selected' : '' }}>Agribank</option>
+                            <option value="tienphongbank" {{ old('name_bank') == 'tienphongbank' ? 'selected' : '' }}>Tienphongbank</option>
+                            <option value="BIDV" {{ old('name_bank') == 'BIDV' ? 'selected' : '' }}>BIDV</option>
+                        </select>
+                        {{--<input type="text"  value="{{ old('name_bank') }}">--}}
+                    </div>
+                </div>
+            </div>
+            @if ($errors->has('name_bank'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-bank">{{ $errors->first('name_bank') }}</i>
+                        </span>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Số TK</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
+                        <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-money" style="width: 16px"></i></div>
+                        <input type="text" name="id_bank" class="form-control" id="" placeholder="" required="required"
+                               autofocus="" value="{{ old('id_bank') }}">
+                    </div>
+                </div>
+            </div>
+            @if ($errors->has('id_bank'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close">{{ $errors->first('id_bank') }}</i>
+                        </span>
+                    </div>
+                </div>
+            @endif
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Người thụ hưởng</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: -webkit-fill-available">
+                        <div class="input-group-addon" style="width: 34px; height: 34px"><i class="fa fa-user-secret" style="width: 16px"></i></div>
+                        <input type="text" name="user_shop" class="form-control" id="user_shop" placeholder="NGUYEN DUC THANH" required=""
+                               autofocus="" value="{{ old('user_shop') }}">
+                    </div>
+                </div>
+            </div>
+            @if ($errors->has('user_shop'))
+                <div class="col-md-3">
+                    <div class="form-control-static">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-user-secret">{{ $errors->first('user_shop') }}</i>
+                        </span>
+                    </div>
+                </div>
+            @endif
+
         </div>
         <div class="row">
             <div class="col-md-3"></div>

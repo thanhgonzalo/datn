@@ -10,7 +10,7 @@
         </div><!--/.row-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
+                <h1 class="page-header">Tồng quan</h1>
             </div>
         </div><!--/.row-->
 
@@ -120,7 +120,7 @@
                 </div>
             </div>
         </div><!--/.row-->
-
+        <input type="hidden" name="rootUrl" value="{{$rootUrl}}">
         <div class="row">
             <div class="col-md-8">
                 <small>Coppyright 2016</small>

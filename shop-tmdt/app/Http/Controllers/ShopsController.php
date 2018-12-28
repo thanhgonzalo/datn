@@ -13,6 +13,7 @@ use App\Http\Service\ServiceProduct;
 use App\Http\Service\ServiceShop;
 use App\Http\Service\ServiceUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -60,7 +61,9 @@ class ShopsController extends Controller
             'total_product'    => $totalProduct,
             'total_customer'   => $totalCustomer
         );
-        return view('back-end.shop.home')->with('data', $data);
+        $config = Config::get('app');
+        $rootUrl = $config['url'];
+        return view('back-end.shop.home')->with(['data' => $data, 'rootUrl'=> $rootUrl]);
     }
 
     /**
@@ -89,7 +92,9 @@ class ShopsController extends Controller
                 'email'                      => 'required|email',
                 'phone'                      => 'numeric|min:10',
                 'password'                   => 'min:6',
-                'password_confirmation'      => 'same:password|min:6'
+                'password_confirmation'      => 'same:password|min:6',
+                'name_bank'                  => 'required',
+                'user_shop'                  => 'required|min:3|max:25'
             ],
             [
                 'shop_name.max'              => 'Nhập tên shop quá dài',
@@ -108,12 +113,15 @@ class ShopsController extends Controller
         $data['password']  = $request->input('password');
         $data['name']      = $request->input('shop_name');
         $data['token']     = Str::random(60);
+        $data['name_bank'] = $request->input('name_bank');
+        $data['name_user_shop'] = $request->input('name_shop');
 
         // Create shop by value in form
         $serviceShop = new ServiceShop();
         $serviceShop->createShop($data);
-
+        $request->session()->forget('shop');
         // Create Session shop
+        session_start();
         $_SESSION["shop"] = $data['email'];
         return redirect('shops/home');
     }

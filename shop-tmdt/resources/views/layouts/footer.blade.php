@@ -3,7 +3,7 @@
         <hr>
         <footer>
           © 2016 2018 Công Ty Cổ Phần Bán Lẻ Thiết Bị Điện Tử / Địa chỉ: TP. BMT / GPĐKKD số: Website đang thử nghiệm. <br>
-          Thiết Kế Bởi : <a href="https://www.facebook.com/ducthanh669" title="" target="#">thanhnd</a>
+          Thiết Kế Bởi : <a href="https://www.facebook.com/ducthanh668" title="" target="#">thanhnd</a>
       </footer>
       </div>
     </div>
