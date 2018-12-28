@@ -63,7 +63,7 @@ class ServiceGoShip
         $listShip = $shipmentInfo->data;
         $shipOrder = null;
         foreach ($listShip as $shipment) {
-            if($shipment->address_to->email == $order->email) {
+            if($shipment->order_id == $order->id) {
                 $shipOrder = $shipment;
                 break;
             }

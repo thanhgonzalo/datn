@@ -37,13 +37,13 @@ class ordersController extends Controller
 
     public function getDetailByShop($id) {
         $order = orders::where('id',$id)->first();
-        $data = DB::table('orders_detail')
+        $orderDetail = DB::table('orders_detail')
             ->select('products.id','products.images','products.name','products.intro','orders_detail.qty','products.price','products.status')
             ->join('products', 'products.id', '=', 'orders_detail.pro_id')
             ->groupBy('orders_detail.id')
             ->where('o_id',$id)
             ->get();
-        return view('back-end.shop.orders.detail',['data'=>$data,'order'=>$order]);
+        return view('back-end.shop.orders.detail',['data'=>$orderDetail,'order'=>$order]);
     }
 
     public function getDeleteDetail($id) {
@@ -57,6 +57,29 @@ class ordersController extends Controller
             return redirect('shops/donhang')
                 ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ đơn hàng số:  '.$id.' !']);
         }
+    }
+
+    /**
+     * Export bill for shipper
+     *
+     * @param $orderId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function exportBill ($orderId) {
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+
+        $serviceShop = new ServiceShop();
+        $email       = $_SESSION["shop"];
+        $shop        = $serviceShop->getShopByEmail($email);
+
+        $serviceOrder = new ServiceOrder();
+        $order = $serviceOrder->getOrderByOrderId($orderId);
+        $orderDetail = $serviceOrder->getOrderDetailByOrderId($orderId);
+
+        return view('back-end.orders.bill', ['order' => $order, 'orderDetail' => $orderDetail, 'shop' => $shop]);
     }
 
     public function confimOrder($token) {
@@ -105,9 +128,6 @@ class ordersController extends Controller
 
     }
 
-    public function exportBill ($orderId) {
-        return view('back-end.orders.bill');
-    }
     public function postDetailByShop($id, Request $request) {
 
         if ($request->input('send-order') != null) {

@@ -74,4 +74,19 @@ class OrderDatabase
             ->first();
         return $orderInfo;
     }
+
+    public function getOrderByOrderId($orderId) {
+       return Orders::where('id',$orderId)->first();
+    }
+
+    public function getOrderDetailByOrderId($orderId) {
+        $orderDetail = DB::table('orders_detail')
+            ->select('products.id','products.images','products.name','products.intro','orders_detail.qty','products.price','products.status')
+            ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+            ->groupBy('orders_detail.id')
+            ->where('o_id',$orderId)
+            ->get();
+
+        return $orderDetail;
+    }
 }

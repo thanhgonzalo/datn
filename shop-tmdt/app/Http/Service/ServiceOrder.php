@@ -19,6 +19,15 @@ class ServiceOrder
         return $orderDataBase->getNumberOrderByShopId($shopId);
     }
 
+    public function getOrderByOrderId($orderId) {
+        $orderDataBase = new OrderDatabase();
+        return $orderDataBase->getOrderByOrderId($orderId);
+    }
+
+    public function getOrderDetailByOrderId($orderId) {
+        $orderDataBase = new OrderDatabase();
+         return $orderDataBase->getOrderDetailByOrderId($orderId);
+    }
     public function getNumberOrderNewByShopId($shopId) {
         $orderDatabase = new OrderDatabase();
         $currentDate = \Carbon\Carbon::now();
@@ -26,7 +35,7 @@ class ServiceOrder
         return $orderDatabase->getNumberOrderNewByShopId($shopId, $agoDate);
     }
 
-    public function getListOrderByShopId($shopId, $orderStatus) {
+    public function getListOrderByShopId($shopId, $orderStatus = 0) {
         $orderDataBase = new OrderDatabase();
         $listStatus = [];
 

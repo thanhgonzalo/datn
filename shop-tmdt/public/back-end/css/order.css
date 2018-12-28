@@ -67,7 +67,6 @@ button {
 
 .footer-left {
     text-align: center;
-    text-transform: uppercase;
     padding-top: 24px;
     position: relative;
     height: 150px;
@@ -80,7 +79,6 @@ button {
 
 .footer-right {
     text-align: center;
-    text-transform: uppercase;
     padding-top: 24px;
     position: relative;
     height: 150px;
