@@ -78,8 +78,8 @@ Route::group(['middleware' => 'admin'], function () {
       Route::group(['prefix' => 'admin'], function() {
 
           Route::get('/home', function() {
-         return view('back-end.home');       	
-       });
+            return redirect('admin/news');
+          });
        // -------------------- quan ly danh muc----------------------
         Route::group(['prefix' => 'danhmuc'], function() {
            Route::get('add',['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);

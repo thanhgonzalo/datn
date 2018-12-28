@@ -40,8 +40,6 @@
                                         <th>Điện thoại</th>
                                         <th>Email</th>
                                         <th>Ngày đăng ký</th>
-                                        <th>Trạng thái</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,17 +51,6 @@
                                             <td>{!!$row->phone!!}</td>
                                             <td>{!!$row->email!!}</td>
                                             <td>{!!$row->created_at!!}</td>
-                                            <td>
-                                                @if($row->status ==0)
-                                                    <span style="color:#d35400;">Chưa xác nhận</span>
-                                                @else
-                                                    <span style="color:#27ae60;"> Đã xác nhận</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{!!url('admin/khachhang/edit/'.$row->id)!!}" title="Chi tiết"> Cập nhật</a> &nbsp;
-                                                <a href="{!!url('admin/khachhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')">Xóa bỏ</a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -69,8 +69,6 @@
                                         <th>Tóm tắt chức năng</th>
                                         <th>Thương hiệu</th>
                                         <th>Giá bán</th>
-                                        <th>Trạng thái</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,17 +80,6 @@
                                             <td>{!!$row->intro!!}</td>
                                             <td>{!!$row->category->name!!}</td>
                                             <td>{!!$row->price!!} đ</td>
-                                            <td>
-                                                @if($row->status ==1)
-                                                    <span style="color:blue;">Còn hàng</span>
-                                                @else
-                                                    Tạm hết hàng
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{!!url('admin/sanpham/mobile/edit/'.$row->id)!!}" title="Sửa"><span class="glyphicon glyphicon-edit">edit</span> </a>
-                                                <a href="{!!url('admin/sanpham/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="glyphicon glyphicon-remove">remove</span> </a>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
