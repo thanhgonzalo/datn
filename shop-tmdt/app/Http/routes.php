@@ -80,6 +80,7 @@ Route::group(['middleware' => 'admin'], function () {
           Route::get('/home', function() {
             return redirect('admin/news');
           });
+          Route::get('/shops',['as'       =>'getallshop','uses' => 'ShopsController@getAllShop']);
        // -------------------- quan ly danh muc----------------------
         Route::group(['prefix' => 'danhmuc'], function() {
            Route::get('add',['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);
@@ -139,6 +140,12 @@ Route::group(['middleware' => 'admin'], function () {
            
            Route::get('/edit/{id}',['as'  =>'geteditnv','uses' => 'Admin_usersController@getedit'])->where('id','[0-9]+');
            Route::post('/edit/{id}',['as' =>'posteditnv','uses' => 'Admin_usersController@postedit'])->where('id','[0-9]+');
+      });
+      // -------------------- quan ly công nợ--------------------
+      Route::group(['prefix' => '/congno'], function() {;
+
+          Route::get('/edit/{id}',['as'  =>'geteditnv','uses' => 'Admin_usersController@getedit'])->where('id','[0-9]+');
+          Route::post('/edit/{id}',['as' =>'posteditnv','uses' => 'Admin_usersController@postedit'])->where('id','[0-9]+');
       });
       // ---------------van de khac ----------------------
     });     

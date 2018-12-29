@@ -40,12 +40,17 @@ class ServiceOrder
         $listStatus = [];
 
         switch ($orderStatus) {
-            case 0: $listStatus = [0,1,2,3,4,5,6,7]; break;
+            case 100: $listStatus = [0,1,2,3,4,5,6,7]; break;
+            case 0: $listStatus = [0]; break;
             case 1: $listStatus = [1]; break;
             case 5: $listStatus = [5]; break;
             case 6: $listStatus = [6]; break;
             case 7: $listStatus = [7]; break;
+            case 8: $listStatus = [8]; break;
             default: $listStatus = [2,3,4]; break;
+        }
+        if($shopId == 0) {
+            return $orderDataBase->getAllOrder($listStatus);
         }
         return $orderDataBase->getListOrderByShopId($shopId, $listStatus);
     }

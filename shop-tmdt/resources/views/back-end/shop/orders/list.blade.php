@@ -17,12 +17,13 @@
                                    <label for="inputLoai" class="col-sm-3 control-label"><strong> Chọn sản phẩm </strong></label>
                                    <div class="col-md-6" style="padding-top: 5px; width: 300px;">
                                        <select name="statusOrder" id="inputLoai" class="form-control">
-                                           <option {{ $orderStatus == 0 ? 'selected' : '' }} value="0" >———————Tất cả——————</option>
+                                           <option {{ $orderStatus == 8 ? 'selected' : '' }} value="100" >———————Tất cả——————</option>
                                            <option {{ $orderStatus == 1 ? 'selected' : '' }} value="1" >————Đơn đã xác nhận————</option>
                                            <option value="234" {{ $orderStatus == 234 ? 'selected' : '' }}>—Đơn khách hàng chưa xác nhận—</option>
                                            <option value="5" {{ $orderStatus == 5 ? 'selected' : '' }} >———Đơn chưa xác nhận————</option>
                                            <option value="6" {{ $orderStatus == 6 ? 'selected' : '' }} >————Đơn đang gửi đi————</option>
                                            <option value="7" {{ $orderStatus == 7 ? 'selected' : '' }} >——Đơn đã gửi và kết thúc——</option>
+                                           <option value="0" {{ $orderStatus == 0 ? 'selected' : '' }} >————Đơn hàng đã hủy————</option>
                                        </select>
                                    </div>
                                    <div class="col-md-3">
@@ -86,13 +87,15 @@
                                                    <span style="color:#1c1cd3;">Đang gửi hàng</span>
                                                @elseif ($row->status == 7)
                                                    <span style="color:#d3b6b9;">Đã gửi hàng kết thúc</span>
+                                               @elseif ($row->status == 0)
+                                                   <span style="color:#c11f25;">Đơn hàng đã hủy</span>
                                                @elseif ($row->status != 5)
                                                    <span style="color:#902b2b;">Khách hàng chưa xác nhận</span>
                                                @endif
                                            </td>
                                            <td>
                                                <a href="{!!url('shops/donhang/detail/'.$row->id)!!}" title="Chi tiết">Chi tiết  </a> &nbsp;
-                                               <a href="{!!url('shops/donhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"> Hủy bỏ</a>
+                                               {{--<a href="{!!url('shops/donhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"> Hủy bỏ</a>--}}
                                            </td>
                                        </tr>
                                    @endforeach

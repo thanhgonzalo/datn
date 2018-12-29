@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel-heading">
-                    Danh sách đơn đặt hàng
+                    Danh sách khách hàng
                 </div>
                 <div class="panel panel-default">
                     @if (count($errors) > 0)

@@ -56,8 +56,11 @@ class PayMentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $rq
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
+
     public function create(Request $rq)
     {
         $payment_id = Session::get('payment_id');

@@ -148,4 +148,10 @@ class ShopsController extends Controller
         }
         return redirect('/');
     }
+
+    public function getAllShop() {
+        $serviceShop = new ServiceShop();
+        $listShop = $serviceShop->getAllShop();
+        return view('back-end.shop.list', ['listShop' => $listShop]);
+    }
 }

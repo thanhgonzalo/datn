@@ -23,4 +23,8 @@ class ServiceShop
         $shopDatabase->createShop($data);
     }
 
+    public function getAllShop() {
+        $shopDatabase = new ShopDatabase();
+        return $shopDatabase->getAllShop();
+    }
 }

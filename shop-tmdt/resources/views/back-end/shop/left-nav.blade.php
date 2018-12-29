@@ -14,7 +14,9 @@
 
             <li><a href="{!!url('shops/khachhang')!!}"><svg class="glyph stroked app-window"><use xlink:href="#stroked-line-graph"></use></svg>  Khách hàng</a></li>
 
-            {{--<li role="presentation" class="divider"></li>--}}
+            <li role="presentation" class="divider"></li>
+            <li><a href="{!!url('shops/doanhthu')!!}"><svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad"/></svg>Doanh thu</a></li>
+
             {{--<li><a href="{!!url('shops/khohang')!!}"><svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad"/></svg>  Thông tin kho hàng</a></li>--}}
 
             {{--<li><a href="{!!url('shops/lichsu')!!}"><svg class="glyph stroked table"><use xlink:href="#stroked-table"/></svg> Lịch sử mua hàng</a></li>--}}

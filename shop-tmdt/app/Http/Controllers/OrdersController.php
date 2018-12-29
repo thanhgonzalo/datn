@@ -156,8 +156,13 @@ class ordersController extends Controller
 
     public function getlist()
     {
-        $data = orders::paginate(10);
-        return view('back-end.orders.list',['data'=>$data]);
+        $orderStatus = 0;
+        if(isset($_GET['statusOrder'])){
+            $orderStatus = $_GET['statusOrder'];
+        }
+        $serviceOrder = new ServiceOrder();
+        $listOrderShop = $serviceOrder->getListOrderByShopId(0, $orderStatus);
+        return view('back-end.orders.list',['data'=>$listOrderShop,'orderStatus' => $orderStatus]);
     }
 
     public function getdetail($id)

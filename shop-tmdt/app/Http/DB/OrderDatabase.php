@@ -53,6 +53,15 @@ class OrderDatabase
         return $listOrder;
     }
 
+    public function getAllOrder($listStatus) {
+        $listOrder = DB::table('orders')
+            ->select('orders.id', 'users.name', 'users.address', 'users.phone', 'users.email', 'orders.created_at','orders.total','orders.status')
+            ->join('users', 'users.id', '=', 'orders.c_id')
+            ->whereIn('orders.status', $listStatus)
+            ->paginate(10);
+        return $listOrder;
+    }
+
     public function getOrder($orderId) {
         $order = DB::table('orders')
             ->where('id',$orderId)

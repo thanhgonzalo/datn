@@ -9,6 +9,7 @@ namespace App\Http\DB;
 
 
 use App\Http\Model\Shops;
+use Illuminate\Support\Facades\DB;
 
 class ShopDatabase
 {
@@ -30,5 +31,11 @@ class ShopDatabase
             'address'        => $data['address'],
             'status'         => '1',
         ]);
+    }
+
+    public function getAllShop() {
+        $listShop = DB::table('shops')
+            ->paginate(10);
+        return $listShop;
     }
 }

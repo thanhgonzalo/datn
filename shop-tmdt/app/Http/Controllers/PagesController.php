@@ -46,6 +46,10 @@ class PagesController extends Controller
 
         return view('home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc]);
     }
+
+    public function payDebt() {
+        var_dump('');
+    }
     public function addcart($id)
     {
         $pro = Products::where('id',$id)->first();

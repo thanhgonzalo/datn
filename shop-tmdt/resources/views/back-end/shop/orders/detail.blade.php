@@ -67,7 +67,7 @@
                                             <th> Số lượng </th>
                                             <th>Giá bán</th>
                                             <th>Trạng thái</th>
-                                            <th>Action</th>
+                                            {{--<th>Action</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,13 +90,15 @@
                                                         <span style="color:#1c1cd3;">Đang gửi hàng</span>
                                                     @elseif ($order->status == 7)
                                                         <span style="color:#d3b6b9;">Đã gửi hàng kết thúc</span>
+                                                    @elseif ($order->status == 0)
+                                                        <span style="color:#c11f25;">Đơn hàng đã hủy</span>
                                                     @elseif ($order->status != 5)
                                                         <span style="color:#902b2b;">Khách hàng chưa xác nhận</span>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <a href="{!!url('')!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="glyphicon glyphicon-remove">remove</span> </a>
-                                                </td>
+                                                {{--<td>--}}
+                                                    {{--<a href="{!!url('')!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="glyphicon glyphicon-remove">remove</span> </a>--}}
+                                                {{--</td>--}}
                                             </tr>
                                         @endforeach
                                     </tbody>
