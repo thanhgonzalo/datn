@@ -143,8 +143,9 @@ Route::group(['middleware' => 'admin'], function () {
       });
       // -------------------- quan ly công nợ--------------------
       Route::group(['prefix' => '/congno'], function() {;
+          Route::get('',['as'       =>'paydebt','uses' => 'PagesController@payDebt']);
 
-          Route::get('/edit/{id}',['as'  =>'geteditnv','uses' => 'Admin_usersController@getedit'])->where('id','[0-9]+');
+          Route::get('/detail/{id}',['as'  =>'paydebtdetail','uses' => 'PagesController@getOrderDetail'])->where('id','[0-9]+');
           Route::post('/edit/{id}',['as' =>'posteditnv','uses' => 'Admin_usersController@postedit'])->where('id','[0-9]+');
       });
       // ---------------van de khac ----------------------

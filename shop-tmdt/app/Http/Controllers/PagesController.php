@@ -48,7 +48,24 @@ class PagesController extends Controller
     }
 
     public function payDebt() {
-        var_dump('');
+        $typeDebt = 0;
+        if(isset($_GET['typeDebt'])){
+            $typeDebt = $_GET['typeDebt'];
+        }
+        $serviceOrder = new ServiceOrder();
+        $listOrderShop = $serviceOrder->getListOrderByShopId(0, $typeDebt);
+        return view('back-end.debut.list',['data'=>$listOrderShop,'typeDebt' => $typeDebt]);
+    }
+
+    public function getOrderDetail($id) {
+        $order = orders::where('id',$id)->first();
+        $orderDetail = DB::table('orders_detail')
+            ->select('products.id','products.images','products.name','products.intro','orders_detail.qty','products.price','products.status')
+            ->join('products', 'products.id', '=', 'orders_detail.pro_id')
+            ->groupBy('orders_detail.id')
+            ->where('o_id',$id)
+            ->get();
+        return view('back-end.debut.detail',['data'=>$orderDetail,'order'=>$order]);
     }
     public function addcart($id)
     {

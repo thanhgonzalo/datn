@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80013
 File Encoding         : 65001
 
-Date: 2018-12-29 10:30:39
+Date: 2018-12-30 01:57:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `admin_users` (
 -- ----------------------------
 -- Records of admin_users
 -- ----------------------------
-INSERT INTO `admin_users` VALUES ('1', 'SupperAdmin', 'thanhndbk@gmail.com', '$2y$10$vyAIK3.i4.40J/LwWBxGE.Ynjhw9koFCs0V3SYh0M6FNtHb0EYbmG', '100', 'bbOVaKZ1YVYhlGaxYgI2Cg12Yg3h8FU9BKYwrRIycFc9HwqMcNdIYM7AZdUz', '2016-12-05 07:38:38', '2018-12-07 08:40:38');
+INSERT INTO `admin_users` VALUES ('1', 'SupperAdmin', 'admin@gmail.com', '$2y$10$vyAIK3.i4.40J/LwWBxGE.Ynjhw9koFCs0V3SYh0M6FNtHb0EYbmG', '100', 'tYWzqnEzm2tH7E0ANJAT6a0OexhLed4OjNrFWo5wrA5IFC269QwZ4HVyEMrM', '2016-12-05 07:38:38', '2018-12-29 04:36:56');
 
 -- ----------------------------
 -- Table structure for category
@@ -258,7 +258,7 @@ INSERT INTO `orders` VALUES ('58', '4', '1', '6490000', '6490000', '2', 'cod', '
 INSERT INTO `orders` VALUES ('59', '4', '1', '6490000', '6490000', '2', 'cod', '                    \r\n                  ', '44e15d97511678420dbe5c946f5d156b', '2018-12-23 10:09:12', '2018-12-23 10:09:12');
 INSERT INTO `orders` VALUES ('60', '4', '1', '5990000', '5990000', '4', 'onepay', 'Thanh toán qua onepay', 'ff6a8ece48a684da20b5e70367f1e639', '2018-12-27 09:46:58', '2018-12-27 09:46:58');
 INSERT INTO `orders` VALUES ('61', '4', '1', '5990000', '5990000', '6', 'onepay', 'Thanh toán qua onepay', '791c7982bea93cd364263136843c09aa', '2018-12-27 09:51:31', '2018-12-27 10:09:09');
-INSERT INTO `orders` VALUES ('62', '4', '3', '16480000', '16480000', '6', 'cod', '                    \r\n                  ', 'ff711a7b4e24ad6d38044536d7a3e874', '2018-12-28 03:15:42', '2018-12-28 03:30:11');
+INSERT INTO `orders` VALUES ('62', '4', '3', '16480000', '16480000', '7', 'cod', '                    \r\n                  ', 'ff711a7b4e24ad6d38044536d7a3e874', '2018-12-28 03:15:42', '2018-12-28 03:30:11');
 INSERT INTO `orders` VALUES ('63', '5', '1', '3500000', '3500000', '2', 'cod', '                    \r\n                  ', 'b93ec97e830a8c3b0a09e18b3c961d0c', '2018-12-28 03:59:04', '2018-12-28 03:59:04');
 INSERT INTO `orders` VALUES ('64', '4', '1', '15890000', '15890000', '5', 'paypal', 'PAY-85B9951107671772CLQS2IZQ', '7b957e43a606ac439a2490c1c564eed8', '2018-12-28 04:20:19', '2018-12-28 04:20:19');
 
@@ -546,4 +546,4 @@ INSERT INTO `users` VALUES ('1', 'Lhson', 'scodeweb2016@gmail.com', '$2y$10$TEY9
 INSERT INTO `users` VALUES ('2', 'viet', 'viet@test.com', '$2y$10$l1kbe4s6eABtFVZqe5UpIese0vCemAMafuRjEPBanY8VIhZJgMUU2', '0868896944', 'dl', '1', null, '2016-12-26 04:45:02', '2016-12-26 04:45:02');
 INSERT INTO `users` VALUES ('3', 'thanhnd', 'thanhnd@gmail.com', '$2y$10$P67y5JVo.1mXXQ7xBOr.E.I5Tfp3AplEYU04xtjUBkx64JwPSF95.', '12345', 'Hà Nội', '1', 'CUqu1J410DIJHJ6JKlrSkMgyJY9ZR4MEcI0subW2NW7tWeM3rsOXz6DUvJI6', '2018-11-24 18:04:57', '2018-12-11 15:18:08');
 INSERT INTO `users` VALUES ('4', 'Khách hàng 1', 'thanhnd.bkhn@gmail.com', '$2y$10$NVV5nKKPn22BQXyk9ssZOOFQcvgYeWl1ToWV/Bx1PV9DXl1lgA8U6', '0033225562', '106, Hoàng Quốc Việt, Cầu Giấy, Hà Nội', '1', 'BDDgJaeBqiWFHcKZDO5VLvjeTW8MHfhyzIsq8FUHAKUQcZjpQWVRf9snLqkV', '2018-12-03 08:52:10', '2018-12-28 03:57:01');
-INSERT INTO `users` VALUES ('5', 'Khách hàng 2', 'thanhkthh5@gmail.com', '$2y$10$Bcfq1Ro5Yr.nAn6st7HKTecYR0O0sAEa69FFKC6YDs8kgrex4nrby', '0033225562', 'Coor Nhue', '1', 'dGEcqeeY5JhcikoPpWCPsgRHQjkUlhFLojUMmXRyGnAGtAQnhHuoPpXWHVk9', '2018-12-03 08:53:28', '2018-12-09 18:45:25');
+INSERT INTO `users` VALUES ('5', 'Khách hàng 2', 'thanhkthh5@gmail.com', '$2y$10$Bcfq1Ro5Yr.nAn6st7HKTecYR0O0sAEa69FFKC6YDs8kgrex4nrby', '0033225562', 'Cổ Nhuế', '1', 'dGEcqeeY5JhcikoPpWCPsgRHQjkUlhFLojUMmXRyGnAGtAQnhHuoPpXWHVk9', '2018-12-03 08:53:28', '2018-12-09 18:45:25');

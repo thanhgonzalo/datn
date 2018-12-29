@@ -118,7 +118,7 @@ class ordersController extends Controller
         $serviceMail = new ServiceMail();
         $serviceMail->sendMailShip($shipmentOrder);
 
-        // Cập nhật trạng thái đơn hàng đang được gửi đi.
+        // Update status order when send to customer
         $order = orders::find($orderId);
         $order->status = 6;
         $order->save();
