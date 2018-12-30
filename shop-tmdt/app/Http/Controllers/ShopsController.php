@@ -154,4 +154,19 @@ class ShopsController extends Controller
         $listShop = $serviceShop->getAllShop();
         return view('back-end.shop.list', ['listShop' => $listShop]);
     }
+
+    public function getRevenue() {
+        session_start();
+        if(!isset($_SESSION["shop"])) {
+            return redirect('/');
+        }
+
+        $serviceShop = new ServiceShop();
+        $email       = $_SESSION["shop"];
+        $shop        = $serviceShop->getShopByEmail($email);
+        $orderStatus = 9;
+        $serviceOrder = new ServiceOrder();
+        $listOrderShop = $serviceOrder->getListOrderByShopId($shop->id, $orderStatus);
+        return view('back-end.shop.revenue.index',['data'=>$listOrderShop,'orderStatus' => $orderStatus]);
+    }
 }

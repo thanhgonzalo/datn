@@ -65,11 +65,13 @@ Route::group(['prefix' => 'shops'], function() {
 
     // -------------------- quan ly thong tin khach hang--------------------
     Route::group(['prefix' => '/khachhang'], function() {;
-
         Route::get('',['as'       =>'getmem','uses' => 'UsersController@getCustomerByShop']);
-
         Route::get('/edit/{id}',['as'  =>'geteditmem','uses' => 'UsersController@getEditCustomerByShop'])->where('id','[0-9]+');
         Route::post('/edit/{id}',['as' =>'posteditmem','uses' => 'UsersController@postEditCustomerByShop'])->where('id','[0-9]+');
+    });
+    // -------------------- quan ly doanh thu--------------------
+    Route::group(['prefix' => '/doanhthu'], function() {;
+        Route::get('',['as'       =>'revenue','uses' => 'ShopsController@getRevenue']);
     });
 });
 

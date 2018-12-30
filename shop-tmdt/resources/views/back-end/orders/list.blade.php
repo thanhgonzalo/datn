@@ -87,6 +87,10 @@
                                                     <span style="color:#1c1cd3;">Đang gửi hàng</span>
                                                 @elseif ($row->status == 7)
                                                     <span style="color:#d3b6b9;">Đã gửi hàng kết thúc</span>
+                                                @elseif ($row->status == 8)
+                                                    <span style="color:#d38a25;">Đã hoàn tiền cho khách</span>
+                                                @elseif ($row->status == 9)
+                                                    <span style="color:#a85cd3;">Đã thanh toán cho shop</span>
                                                 @elseif ($row->status == 0)
                                                     <span style="color:#c11f25;">Đơn hàng đã hủy</span>
                                                 @elseif ($row->status != 5)
