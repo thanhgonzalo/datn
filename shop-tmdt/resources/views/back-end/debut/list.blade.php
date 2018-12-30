@@ -17,8 +17,10 @@
                                     <label for="inputLoai" class="col-sm-3 control-label"><strong> Chọn sản phẩm </strong></label>
                                     <div class="col-md-6" style="padding-top: 5px; width: 300px;">
                                         <select name="typeDebt" id="inputLoai" class="form-control">
-                                            <option value="1" {{ $typeDebt == 7 ? 'selected' : '' }} >——Đơn đã gửi và kết thúc——</option>
+                                            <option value="7" {{ $typeDebt == 7 ? 'selected' : '' }} >—Đơn cần thanh toán cho shop——</option>
                                             <option value="0" {{ $typeDebt == 0 ? 'selected' : '' }} >————Đơn hàng đã hủy————</option>
+                                            <option value="8" {{ $typeDebt == 8 ? 'selected' : '' }} >——Đã trả tiền lại cho khách——</option>
+                                            <option value="9" {{ $typeDebt == 9 ? 'selected' : '' }} >———Đã thanh toán cho shop———</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
@@ -81,7 +83,11 @@
                                                 @elseif ($row->status == 6)
                                                     <span style="color:#1c1cd3;">Đang gửi hàng</span>
                                                 @elseif ($row->status == 7)
-                                                    <span style="color:#d3b6b9;">Đã gửi hàng kết thúc</span>
+                                                    <span style="color:#d3b6b9;">Đơn cần thanh toán cho shop</span>
+                                                @elseif ($row->status == 8)
+                                                    <span style="color:#d38a25;">Đã hoàn tiền cho khách</span>
+                                                @elseif ($row->status == 9)
+                                                    <span style="color:#a85cd3;">Đã thanh toán cho shop</span>
                                                 @elseif ($row->status == 0)
                                                     <span style="color:#c11f25;">Đơn hàng đã hủy</span>
                                                 @elseif ($row->status != 5)

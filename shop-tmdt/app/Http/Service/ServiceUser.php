@@ -28,4 +28,9 @@ class ServiceUser
         $emailObj = $userDatabase->getEmail($userId);
         return $emailObj->email;
     }
+
+    public function getUser($orderDebutId) {
+        $userDatabase = new UserDatabase();
+        return $userDatabase->getUser($orderDebutId);
+    }
 }

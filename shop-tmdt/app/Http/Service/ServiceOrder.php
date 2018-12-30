@@ -47,6 +47,7 @@ class ServiceOrder
             case 6: $listStatus = [6]; break;
             case 7: $listStatus = [7]; break;
             case 8: $listStatus = [8]; break;
+            case 9: $listStatus = [9]; break;
             default: $listStatus = [2,3,4]; break;
         }
         if($shopId == 0) {

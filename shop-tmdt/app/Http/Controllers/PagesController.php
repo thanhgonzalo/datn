@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Service\ServiceMail;
 use App\Http\Service\ServiceOrder;
 use App\Http\Service\ServiceProduct;
+use App\Http\Service\ServiceShop;
 use App\Http\Service\ServiceUser;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class PagesController extends Controller
         return view('home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc]);
     }
 
-    public function payDebt() {
+    public function getListDebut() {
         $typeDebt = 0;
         if(isset($_GET['typeDebt'])){
             $typeDebt = $_GET['typeDebt'];
@@ -59,13 +60,41 @@ class PagesController extends Controller
 
     public function getOrderDetail($id) {
         $order = orders::where('id',$id)->first();
-        $orderDetail = DB::table('orders_detail')
-            ->select('products.id','products.images','products.name','products.intro','orders_detail.qty','products.price','products.status')
-            ->join('products', 'products.id', '=', 'orders_detail.pro_id')
-            ->groupBy('orders_detail.id')
-            ->where('o_id',$id)
-            ->get();
-        return view('back-end.debut.detail',['data'=>$orderDetail,'order'=>$order]);
+        $serviceOrder = new ServiceOrder();
+        $orderDetail = $serviceOrder->getOrderDetailByOrderId($id);
+        $serviceShop = new ServiceShop();
+        $shop = $serviceShop->getShopByOrderId($id);
+        return view('back-end.debut.detail',['data'=>$orderDetail,'order'=>$order,'shop'=> $shop]);
+    }
+
+    public function payDebut() {
+        if(isset($_POST['order-status'])){
+            $orderStatus = $_POST['order-status'];
+            $orderDebutId = $_POST['order-debut'];
+        }
+        $order = orders::where('id',$orderDebutId)->first();
+        $serviceOrder = new ServiceOrder();
+        $orderDetail = $serviceOrder->getOrderDetailByOrderId($orderDebutId);
+        $serviceShop = new ServiceShop();
+        $shop = $serviceShop->getShopByOrderId($orderDebutId);
+
+        if($orderStatus == 0) {
+            // send for user
+            $serviceUser = new ServiceUser();
+            $user = $serviceUser->getUser($orderDebutId);
+            $order_update = orders::find($order->id);
+            $order_update->status = 8;
+            $order_update->updated_at = new \DateTime();
+            $order_update->save();
+            return view('back-end.debut.bill-user', ['order' => $order, 'orderDetail' => $orderDetail, 'shop' => $shop]);
+        }else {
+            // send for shop
+            $order_update = orders::find($order->id);
+            $order_update->status = 9;
+            $order_update->updated_at = new \DateTime();
+            $order_update->save();
+            return view('back-end.debut.bill-shop', ['order' => $order, 'orderDetail' => $orderDetail, 'shop' => $shop]);
+        }
     }
     public function addcart($id)
     {

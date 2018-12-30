@@ -38,18 +38,22 @@ class OrderDatabase
 
     public function getListOrderByShopId($shopId, $listStatus)
     {
+
         $listProductId = Products::select('id')->where('shop_id', '=', $shopId)->get()->toArray();
         $listOrderId = DB::table('orders')
             ->join('orders_detail', 'orders.id', '=', 'orders_detail.o_id')
             ->join('products', 'products.id', '=', 'orders_detail.pro_id')
             ->whereIn('products.id', $listProductId)
             ->lists('orders.id');
+        DB::enableQueryLog();
         $listOrder = DB::table('orders')
             ->select('orders.id', 'users.name', 'users.address', 'users.phone', 'users.email', 'orders.created_at','orders.total','orders.status')
             ->join('users', 'users.id', '=', 'orders.c_id')
             ->whereIn('orders.id', $listOrderId)
             ->whereIn('orders.status', $listStatus)
             ->paginate(10);
+        $query = DB::getQueryLog();
+        $query = end($query);
         return $listOrder;
     }
 
@@ -97,5 +101,15 @@ class OrderDatabase
             ->get();
 
         return $orderDetail;
+    }
+
+    public function getListProductId($orderId) {
+        $listProductID = DB::table('orders_detail')
+            ->select('orders_detail.pro_id')
+            ->join('orders','orders.id', '=', 'orders_detail.o_id')
+            ->where('orders.id', '=', $orderId)
+            ->lists('orders_detail.pro_id');
+
+        return $listProductID;
     }
 }

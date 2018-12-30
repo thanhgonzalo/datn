@@ -121,6 +121,7 @@ class ordersController extends Controller
         // Update status order when send to customer
         $order = orders::find($orderId);
         $order->status = 6;
+        $order->updated_at = new \DateTime();
         $order->save();
 
         return redirect('shops/donhang')
@@ -143,6 +144,7 @@ class ordersController extends Controller
 
         $order = orders::find($id);
         $order->status = 1;
+        $order->updated_at = new \DateTime();
         $order->save();
 
         $serviceProduct = new ServiceProduct();

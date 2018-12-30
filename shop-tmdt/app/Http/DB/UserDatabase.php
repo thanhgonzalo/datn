@@ -47,4 +47,12 @@ class UserDatabase
             ->first();
         return $email;
     }
+
+    public function getUser($orderDebutId) {
+        $user = DB::table('users')
+            ->join('orders', 'orders.c_id', '=','users.id')
+            ->where('orders.id', '=', $orderDebutId)
+            ->get();
+        return $user;
+    }
 }

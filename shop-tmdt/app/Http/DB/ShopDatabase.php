@@ -38,4 +38,12 @@ class ShopDatabase
             ->paginate(10);
         return $listShop;
     }
+
+    public function getShopByListProductId($listProductId) {
+        $listShop = DB::table('shops')
+            ->join('products','products.shop_id', '=', 'shops.id')
+            ->whereIn('products.id',$listProductId)
+            ->get();
+        return $listShop;
+    }
 }

@@ -9,6 +9,7 @@
 namespace App\Http\Service;
 
 
+use App\Http\DB\OrderDatabase;
 use App\Http\DB\ShopDatabase;
 
 class ServiceShop
@@ -26,5 +27,14 @@ class ServiceShop
     public function getAllShop() {
         $shopDatabase = new ShopDatabase();
         return $shopDatabase->getAllShop();
+    }
+
+    public function getShopByOrderId($orderId) {
+        $orderDatabase = new OrderDatabase();
+        $listProductId = $orderDatabase->getListProductId($orderId);
+
+        $shopDatabase = new ShopDatabase();
+        $shop = $shopDatabase->getShopByListProductId($listProductId);
+        return $shop;
     }
 }
